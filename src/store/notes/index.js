@@ -1,7 +1,7 @@
 import produce from 'immer'
 
 import { findIndexOfNoteWithID } from 'utils'
-import { findNewNoteID, canCreateTab } from 'state/utils'
+import { findNewNoteID, canCreateTab } from 'store/utils'
 
 //actions
 const UPDATE_CURRENT_NOTE_ID = 'UPDATE_CURRENT_NOTE_ID'
@@ -37,9 +37,9 @@ const initialState = {
 	data: [
 		{
 			id: 0,
-			title: 'default',
+			title: 'HelloWorld',
 			text: 'Hello world!!!',
-			fontFamily: 'Sans Serif',
+			fontFamily: null,
 			sortIndex: 0,
 		},
 		{
@@ -107,7 +107,7 @@ export const notesReducer = (state = initialState, action) => {
 // other
 
 const text = ''
-const font = 'Sans Serif'
+const font = null
 
 function newNoteShape({ title, id, sortIndex }) {
 	return {

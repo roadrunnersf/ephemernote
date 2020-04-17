@@ -1,20 +1,22 @@
 import React, { memo } from 'react'
 import orderBy from 'lodash/orderBy'
 
+import { TabButton } from 'elements/TextArea'
+
 export const TitleTabs = memo(
-	({ titleTabData, dispatchUpdateCurrentNoteID }) => {
+	({ titleTabData, currentNoteID, dispatchUpdateCurrentNoteID }) => {
 		const sortedTitleTabData = orderBy(titleTabData, 'sortIndex', 'asc')
 
 		return (
 			<>
-				<p>this is the notes page</p>
 				{sortedTitleTabData.map(({ id, title }) => (
-					<button
+					<TabButton
 						onClick={() => dispatchUpdateCurrentNoteID(id)}
 						key={id}
+						active={id === currentNoteID}
 					>
 						{title}
-					</button>
+					</TabButton>
 				))}
 			</>
 		)
