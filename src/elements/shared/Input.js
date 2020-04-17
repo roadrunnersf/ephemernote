@@ -11,7 +11,6 @@ export const Input = styled.input`
 	-o-transition: background-color 500ms;
 	transition: background-color 500ms;
 
-
 	${({ borderRadius }) => whichBorderRadius(borderRadius)}
 	${({ theme }) => css`
 		background-color: ${theme.secondary};
@@ -23,11 +22,11 @@ export const Input = styled.input`
 			opacity: 1;
 		}
 	`}
-  ${({ hasContent, theme }) =>
-		hasContent &&
-		css`
-			:not(:focus) {
-				background-color: ${theme.tertiary};
-			}
-		`}
 `
+// ${({ hasContent, theme }) =>
+// 	hasContent &&
+// 	css`
+// 		:not(:focus) {
+// 			background-color: ${theme.tertiary};
+// 		}
+// 	`}

@@ -8,6 +8,6 @@ export const mintTheme = {
 }
 
 export const layout = {
-	borderRadius: '10px',
+	borderRadiusPx: '10px',
 	unit: 8,
 }

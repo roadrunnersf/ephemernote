@@ -17,7 +17,6 @@ export const App = () => {
 			<Provider store={store}>
 				<ThemeProvider theme={mintTheme}>
 					<GlobalStyle />
-					<h3>This is an app</h3>
 					<Router>
 						<Switch>
 							<Route path="/">

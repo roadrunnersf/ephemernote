@@ -1,21 +1,13 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { layout } from 'theme'
 import { whichBorderRadius } from 'elements/cssHelpers'
 
 const { unit } = layout
 
-export const Input = styled.button`
+export const Button = styled.button`
 	padding: ${unit}px;
 
 	${({ borderRadius }) => whichBorderRadius(borderRadius)}
-	${({ theme }) => css`
-		background-color: ${theme.secondary};
-		:focus {
-			background-color: ${theme.primary};
-		}
-		::placeholder {
-			color: ${theme.text};
-			opacity: 1;
-		}
-	`}
+	${({ theme }) => `background-color: ${theme.secondary};`}
+	${({ theme, variant }) => variant && `background-color: ${theme[variant]}`}
 `

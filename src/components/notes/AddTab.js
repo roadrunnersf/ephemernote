@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 
-import { Input } from 'elements/shared'
+import { Input, Button } from 'elements/shared'
 
 export const AddTab = memo(
 	({ addTabValue, dispatchSetAddTabValue, dispatchCreateNewTab }) => {
@@ -16,12 +16,16 @@ export const AddTab = memo(
 					onChange={dispatchSetAddTabValue}
 					placeholder="Enter new tab name..."
 					borderRadius="bottom"
-					hasContent={hasContent}
+					// hasContent={hasContent}
 				/>
 				{hasContent && (
-					<button type="button" onClick={dispatchCreateNewTab}>
+					<Button
+						onClick={dispatchCreateNewTab}
+						borderRadius="bottom"
+						variant={'tertiary'}
+					>
 						Add Tab
-					</button>
+					</Button>
 				)}
 			</>
 		)

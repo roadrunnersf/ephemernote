@@ -15,9 +15,8 @@ export const updateCurrentNoteID = id => ({
 	id,
 })
 
-export const updateCurrentNoteText = (id, text) => ({
+export const updateCurrentNoteText = text => ({
 	type: UPDATE_CURRENT_NOTE_TEXT,
-	id,
 	text,
 })
 
@@ -75,13 +74,16 @@ export const notesReducer = (state = initialState, action) => {
 		case CREATE_NEW_TAB:
 			const notesData = state.data
 			const newTitle = state.addTabValue
+			const notesSortIndexList = notesData.map(
+				({ sortIndex }) => sortIndex
+			)
 
 			if (!canCreateTab(notesData, newTitle)) {
 				return state
 			}
 
 			const newNoteID = findNewNoteID(notesData)
-			const newNoteSortIndex = Math.max(...notesData)
+			const newNoteSortIndex = Math.max(...notesSortIndexList) + 1
 
 			return produce(state, draftState => {
 				draftState.data.push(
@@ -91,6 +93,7 @@ export const notesReducer = (state = initialState, action) => {
 						sortIndex: newNoteSortIndex,
 					})
 				)
+				draftState.currentNoteID = newNoteID
 				draftState.addTabValue = ''
 			})
 

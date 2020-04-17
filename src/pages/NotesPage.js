@@ -18,6 +18,7 @@ export const NotesPage = () => {
 	const dispatch = useDispatch()
 
 	const notes = useSelector(state => state.notes.data)
+
 	const currentNoteID = useSelector(state => state.notes.currentNoteID)
 	const addTabValue = useSelector(state => state.notes.addTabValue)
 

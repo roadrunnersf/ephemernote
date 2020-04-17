@@ -1,6 +1,6 @@
 import { layout } from 'theme'
 
-const { borderRadius: bR } = layout
+const { borderRadiusPx: bR } = layout
 
 export const whichBorderRadius = side => {
 	switch (side) {
