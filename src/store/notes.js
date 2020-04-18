@@ -4,10 +4,10 @@ import { findIndexOfNoteWithID } from 'utils'
 import { findNewNoteID, canCreateTab } from 'store/utils'
 
 //actions
-const UPDATE_CURRENT_NOTE_ID = 'UPDATE_CURRENT_NOTE_ID'
-const UPDATE_CURRENT_NOTE_TEXT = 'UPDATE_CURRENT_NOTE_TEXT'
-const CREATE_NEW_TAB = 'CREATE_NEW_TAB'
-const SET_ADD_TAB_VALUE = 'SET_ADD_TAB_VALUE'
+const UPDATE_CURRENT_NOTE_ID = 'Update current note ID'
+const UPDATE_CURRENT_NOTE_TEXT = 'Update current note text'
+const CREATE_NEW_TAB = 'Create new tab'
+const SET_ADD_TAB_VALUE = 'Set add tab value'
 
 //action creators
 export const updateCurrentNoteID = id => ({
