@@ -5,7 +5,11 @@ import { mdiPlus, mdiTrashCanOutline, mdiPalette } from '@mdi/js'
 import { Icon } from 'elements/shared'
 
 export const ActionButtons = memo(
-	({ dispatchCycleThemeColor, dispatchToggleShowAddNoteInput }) => {
+	({
+		dispatchCycleThemeColor,
+		dispatchToggleShowAddNoteInput,
+		dispatchDeleteCurrentNote,
+	}) => {
 		const actionButtons = [
 			{
 				title: 'Add note',
@@ -15,7 +19,7 @@ export const ActionButtons = memo(
 			{
 				title: 'Delete current note',
 				path: mdiTrashCanOutline,
-				onClick: dispatchCycleThemeColor,
+				onClick: dispatchDeleteCurrentNote,
 			},
 			{
 				title: 'Change theme',

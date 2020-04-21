@@ -9,6 +9,7 @@ import {
 	updateCurrentNoteText,
 	updateCurrentNoteID,
 	toggleShowAddNoteInput,
+	deleteCurrentNote,
 } from 'store/notes'
 import { cycleThemeColor } from 'store/app'
 
@@ -51,13 +52,15 @@ export const NotesPage = () => {
 		[dispatch]
 	)
 
-	const dispatchCycleThemeColor = useCallback(() => {
-		dispatch(cycleThemeColor())
-	}, [dispatch])
-
 	const dispatchToggleShowAddNoteInput = useCallback(() => {
 		dispatch(toggleShowAddNoteInput())
 		addNoteInputRef.current.focus()
+	}, [dispatch])
+	const dispatchDeleteCurrentNote = useCallback(() => {
+		dispatch(deleteCurrentNote())
+	}, [dispatch])
+	const dispatchCycleThemeColor = useCallback(() => {
+		dispatch(cycleThemeColor())
 	}, [dispatch])
 
 	return (
@@ -89,10 +92,13 @@ export const NotesPage = () => {
 					</div>
 					<div>
 						<ActionButtons
-							dispatchCycleThemeColor={dispatchCycleThemeColor}
+							dispatchDeleteCurrentNote={
+								dispatchDeleteCurrentNote
+							}
 							dispatchToggleShowAddNoteInput={
 								dispatchToggleShowAddNoteInput
 							}
+							dispatchCycleThemeColor={dispatchCycleThemeColor}
 						/>
 					</div>
 				</ContentBox>

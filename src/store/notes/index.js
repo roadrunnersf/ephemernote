@@ -1,7 +1,11 @@
 import produce from 'immer'
 
 import { findIndexOfNoteWithID } from 'utils'
-import { findNewNoteID, canCreateNote } from 'store/notes/utils'
+import {
+	findNewNoteID,
+	canCreateNote,
+	findNewCurrentNoteIdOnDelete,
+} from 'store/notes/utils'
 import { initialState } from './initialState'
 
 // actions
@@ -10,13 +14,14 @@ const UPDATE_CURRENT_NOTE_ID = 'Update current note ID'
 const UPDATE_CURRENT_NOTE_TEXT = 'Update current note text'
 
 const CREATE_NEW_NOTE = 'Create new note'
+const DELETE_CURRENT_NOTE = 'Delete current note'
 
 const SET_ADD_NOTE_INPUT_VALUE = 'Set add note input value'
 
 const TOGGLE_SHOW_ADD_NOTE_INPUT = 'Toggle show add note input'
-// const HIDE_ADD_NOTE_INPUT = 'Hide add note input'
 
 //action creators
+
 export const updateCurrentNoteID = id => ({
 	type: UPDATE_CURRENT_NOTE_ID,
 	id,
@@ -29,6 +34,9 @@ export const updateCurrentNoteText = text => ({
 export const createNewNote = () => ({
 	type: CREATE_NEW_NOTE,
 })
+export const deleteCurrentNote = () => ({
+	type: DELETE_CURRENT_NOTE,
+})
 
 export const setAddNoteInputValue = newString => ({
 	type: SET_ADD_NOTE_INPUT_VALUE,
@@ -38,23 +46,37 @@ export const setAddNoteInputValue = newString => ({
 export const toggleShowAddNoteInput = () => ({
 	type: TOGGLE_SHOW_ADD_NOTE_INPUT,
 })
-// export const hideAddNoteInput = () => ({
-// 	type: HIDE_ADD_NOTE_INPUT,
-// })
 
 // reducer
 
 export const notesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case UPDATE_CURRENT_NOTE_TEXT:
+		case DELETE_CURRENT_NOTE:
 			const indexOfCurrentNote = findIndexOfNoteWithID(
 				state.data,
 				state.currentNoteID
 			)
-
-			return produce(state, draft => {
-				draft.data[indexOfCurrentNote].text = action.text
-			})
+			// eslint-disable-next-line default-case
+			switch (action.type) {
+				case UPDATE_CURRENT_NOTE_TEXT:
+					return produce(state, draft => {
+						draft.data[indexOfCurrentNote].text = action.text
+					})
+				case DELETE_CURRENT_NOTE:
+					if (state.data.length > 1) {
+						return produce(state, draft => {
+							draft.currentNoteID = findNewCurrentNoteIdOnDelete(
+								state.data,
+								indexOfCurrentNote
+							)
+							draft.data.splice(indexOfCurrentNote, 1)
+						})
+					} else {
+						return state
+					}
+			}
+			break
 
 		case UPDATE_CURRENT_NOTE_ID:
 			return {
