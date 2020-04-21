@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import orderBy from 'lodash/orderBy'
 
-import { TabButton } from 'elements/shared'
+import { NoteTitleTab, AddNoteTab } from 'elements/shared'
 
 export const TitleTabs = memo(
 	({ titleTabsData, currentNoteID, dispatchUpdateCurrentNoteID }) => {
@@ -12,14 +12,14 @@ export const TitleTabs = memo(
 		return (
 			<>
 				{sortedtitleTabsData.map(({ id, title }) => (
-					<TabButton
+					<NoteTitleTab
 						onClick={() => dispatchUpdateCurrentNoteID(id)}
 						key={id}
 						active={id === currentNoteID}
 						rounding="top"
 					>
 						{title}
-					</TabButton>
+					</NoteTitleTab>
 				))}
 			</>
 		)

@@ -12,7 +12,7 @@ const { unit } = layout
 export const Icon = styled(mdiIcon)`
 	${({ theme }) => css`
 		color: ${theme.tertiary};
-		margin-left: ${unit}px;
+		margin-right: ${unit}px;
 		${transitionProperty('color')}
 
 		:hover {
