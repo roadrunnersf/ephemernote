@@ -1,7 +1,5 @@
 import mdiIcon from '@mdi/react'
 
-import { mdiPalette } from '@mdi/js'
-
 import styled, { css } from 'styled-components'
 
 import { transitionProperty } from 'elements/cssHelpers'

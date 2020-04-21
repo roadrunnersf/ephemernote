@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { layout } from 'theme'
-import { outputBorderRadius, transitionProperty } from 'elements/cssHelpers'
+import { transitionProperty } from 'elements/cssHelpers'
 
 const { borderRadiusPx: bR, unit } = layout
 

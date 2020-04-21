@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import orderBy from 'lodash/orderBy'
 
-import { NoteTitleTab, AddNoteTab } from 'elements/shared'
+import { NoteTitleTab } from 'elements/shared'
 
 export const TitleTabs = memo(
 	({ titleTabsData, currentNoteID, dispatchUpdateCurrentNoteID }) => {
