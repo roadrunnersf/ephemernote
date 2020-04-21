@@ -1,15 +1,15 @@
 import produce from 'immer'
 
 import { findIndexOfNoteWithID } from 'utils'
-import { findNewNoteID, canCreateTab } from 'store/notes/utils'
+import { findNewNoteID, canCreateNote } from 'store/notes/utils'
 import { initialState } from './initialState'
 
 // actions
 
 const UPDATE_CURRENT_NOTE_ID = 'Update current note ID'
 const UPDATE_CURRENT_NOTE_TEXT = 'Update current note text'
-const CREATE_NEW_TAB = 'Create new tab'
-const SET_ADD_TAB_VALUE = 'Set add tab value'
+const CREATE_NEW_NOTE = 'Create new note'
+const SET_ADD_NOTE_INPUT_VALUE = 'Set add note input value'
 
 //action creators
 export const updateCurrentNoteID = id => ({
@@ -22,12 +22,12 @@ export const updateCurrentNoteText = text => ({
 	text,
 })
 
-export const createNewTab = () => ({
-	type: CREATE_NEW_TAB,
+export const createNewNote = () => ({
+	type: CREATE_NEW_NOTE,
 })
 
-export const setAddTabValue = newString => ({
-	type: SET_ADD_TAB_VALUE,
+export const setAddNoteInputValue = newString => ({
+	type: SET_ADD_NOTE_INPUT_VALUE,
 	newString,
 })
 
@@ -50,14 +50,14 @@ export const notesReducer = (state = initialState, action) => {
 				draft.currentNoteID = action.id
 			})
 
-		case CREATE_NEW_TAB:
+		case CREATE_NEW_NOTE:
 			const notesData = state.data
-			const newTitle = state.addTabValue
+			const newTitle = state.addNoteInputValue
 			const notesSortIndexList = notesData.map(
 				({ sortIndex }) => sortIndex
 			)
 
-			if (!canCreateTab(notesData, newTitle)) {
+			if (!canCreateNote(notesData, newTitle)) {
 				return state
 			}
 
@@ -73,12 +73,12 @@ export const notesReducer = (state = initialState, action) => {
 					})
 				)
 				draft.currentNoteID = newNoteID
-				draft.addTabValue = ''
+				draft.addNoteInputValue = ''
 			})
 
-		case SET_ADD_TAB_VALUE:
+		case SET_ADD_NOTE_INPUT_VALUE:
 			return produce(state, draft => {
-				draft.addTabValue = action.newString
+				draft.addNoteInputValue = action.newString
 			})
 
 		default:

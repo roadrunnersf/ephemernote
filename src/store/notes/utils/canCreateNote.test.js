@@ -1,23 +1,23 @@
 import {
-	canCreateTab,
+	canCreateNote,
 	minTitleLength,
 	maxTitleLength,
 	maxListLength,
-} from './canCreateTab'
+} from './canCreateNote'
 
-describe('canCreateTab', () => {
-	it('Allows creating of tab with a unique title', () => {
-		expect(canCreateTab([], 'testTitle')).toBe(true)
+describe('canCreateNote', () => {
+	it('Allows creating of note with a unique title', () => {
+		expect(canCreateNote([], 'testTitle')).toBe(true)
 	})
 	it('Cannot add a title that is too short', () => {
 		const tooShortTitle = 'x'.repeat(minTitleLength - 1)
 
-		expect(canCreateTab([], tooShortTitle)).toBe(false)
+		expect(canCreateNote([], tooShortTitle)).toBe(false)
 	})
 	it('Cannot add a title that is too long', () => {
 		const tooLongTitle = 'x'.repeat(maxTitleLength + 1)
 
-		expect(canCreateTab([], tooLongTitle)).toBe(false)
+		expect(canCreateNote([], tooLongTitle)).toBe(false)
 	})
 
 	it('Cannot add too many tabs', () => {
@@ -26,7 +26,7 @@ describe('canCreateTab', () => {
 		const titleWithAcceptableLength = 'x'.repeat(minTitleLength)
 
 		expect(
-			canCreateTab(stateWithMaxLength, titleWithAcceptableLength)
+			canCreateNote(stateWithMaxLength, titleWithAcceptableLength)
 		).toBe(false)
 	})
 })

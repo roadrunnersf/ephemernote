@@ -7,12 +7,12 @@ import { Icon } from 'elements/shared'
 export const ActionButtons = memo(({ dispatchCycleThemeColor }) => {
 	const actionButtons = [
 		{
-			title: 'Add tab',
+			title: 'Add note',
 			path: mdiPlus,
 			onClick: dispatchCycleThemeColor,
 		},
 		{
-			title: 'Delete current tab',
+			title: 'Delete current note',
 			path: mdiTrashCanOutline,
 			onClick: dispatchCycleThemeColor,
 		},

@@ -18,5 +18,5 @@ export const initialState = {
 			sortIndex: 1,
 		},
 	],
-	addTabValue: '',
+	addNoteInputValue: '',
 }

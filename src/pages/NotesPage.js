@@ -1,15 +1,15 @@
 import React, { useCallback, useMemo, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { TitleTabs, AddTab, ActionButtons } from 'components/notes'
+import { TitleTabs, AddNoteInput, ActionButtons } from 'components/notes'
 import { TextArea } from 'elements/TextArea'
 import { PageContainer, ContentContainer, ContentBox } from 'elements/shared'
 
 import {
 	updateCurrentNoteText,
 	updateCurrentNoteID,
-	createNewTab,
-	setAddTabValue,
+	createNewNote,
+	setAddNoteInputValue,
 } from 'store/notes'
 import { cycleThemeColor } from 'store/app'
 
@@ -23,7 +23,9 @@ export const NotesPage = () => {
 	const notes = useSelector(state => state.notes.data)
 
 	const currentNoteID = useSelector(state => state.notes.currentNoteID)
-	const addTabValue = useSelector(state => state.notes.addTabValue)
+	const addNoteInputValue = useSelector(
+		state => state.notes.addNoteInputValue
+	)
 
 	const currentNote = findNoteWithID(notes, currentNoteID)
 
@@ -45,14 +47,14 @@ export const NotesPage = () => {
 		[dispatch]
 	)
 
-	const dispatchCreateNewTab = useCallback(() => {
-		dispatch(createNewTab())
+	const dispatchCreateNewNote = useCallback(() => {
+		dispatch(createNewNote())
 		textAreaRef.current.focus()
 	}, [dispatch])
 
-	const dispatchSetAddTabValue = useCallback(
+	const dispatchSetAddNoteInputValue = useCallback(
 		event => {
-			dispatch(setAddTabValue(event.target.value))
+			dispatch(setAddNoteInputValue(event.target.value))
 		},
 		[dispatch]
 	)
@@ -90,10 +92,12 @@ export const NotesPage = () => {
 				</ContentBox>
 				<ContentBox justifyContent="space-between">
 					<div>
-						<AddTab
-							addTabValue={addTabValue}
-							dispatchSetAddTabValue={dispatchSetAddTabValue}
-							dispatchCreateNewTab={dispatchCreateNewTab}
+						<AddNoteInput
+							addNoteInputValue={addNoteInputValue}
+							dispatchSetAddNoteInputValue={
+								dispatchSetAddNoteInputValue
+							}
+							dispatchCreateNewNote={dispatchCreateNewNote}
 						/>
 					</div>
 					<div>
