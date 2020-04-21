@@ -1,11 +1,17 @@
 import { createGlobalStyle } from 'styled-components'
+import { layout } from 'theme'
+
+const { unit } = layout
 
 export const GlobalStyle = createGlobalStyle`
 	body {
 		margin: 0px;
 		padding: 0px;
-    font-family: 'Roboto';
-    font-size: 16px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+		font-size: ${unit * 2.5}px;
+		
+		line-height: 1.4;
+
 		background-color: ${p => p.theme.background};
 		color: ${p => p.theme.text};
 	}

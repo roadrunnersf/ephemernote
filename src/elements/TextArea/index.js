@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { layout } from 'theme'
+import { outputBorderRadius, transitionProperty } from 'elements/cssHelpers'
 
 const { borderRadiusPx: bR, unit } = layout
 
@@ -7,9 +8,12 @@ export const TextArea = styled.textarea`
 	border-radius: 0 ${bR} ${bR} 0;
 	resize: none;
 	width: 100%;
-	height: 150px;
+	height: 450px;
 	border: none;
-	padding: ${unit}px;
+	padding: ${unit * 2}px;
+	margin: 0px;
+
+	${transitionProperty('background-color')}
 
 	::-webkit-scrollbar {
 		width: ${unit * 1.5}px;
@@ -17,7 +21,7 @@ export const TextArea = styled.textarea`
 		scroll-behavior: smooth !important;
 	}
 
-	${({ theme }) => css`
+	${({ theme, fontFamily }) => css`
 		background-color: ${theme.primary};
 		::-webkit-scrollbar-track {
 			border-radius: ${bR};
@@ -27,26 +31,8 @@ export const TextArea = styled.textarea`
 			background: ${theme.tertiary};
 			border-radius: ${bR};
 		}
-	`}
-
-	${p =>
-		p.fontFamily === 'Monospace'
+		${fontFamily === 'Monospace'
 			? `font-family: monospace, monospace;`
 			: `font-family: inherit;`}
-`
-
-export const TabButton = styled.button`
-	-webkit-transition: background-color 250ms;
-	-moz-transition: background-color 250ms;
-	-o-transition: background-color 250ms;
-	transition: background-color 250ms;
-
-	border: none;
-	height: ${unit * 3}px;
-	border-radius: ${bR} ${bR} 0 0;
-
-	${p =>
-		p.active
-			? `background-color: ${p.theme.primary};`
-			: `background-color: ${p.theme.secondary};`}
+	`}
 `

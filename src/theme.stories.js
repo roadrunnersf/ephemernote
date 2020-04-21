@@ -2,8 +2,6 @@ import React from 'react'
 
 import { mintTheme } from 'theme'
 
-const { primary, secondary, text, background, tertiary } = mintTheme
-
 const ColoredBox = ({ children, backGroundColor }) => (
 	<div
 		style={{

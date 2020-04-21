@@ -1,13 +1,36 @@
-export const mintTheme = {
-	primary: 'rgb(176,216,197)',
-	secondary: 'rgb(218,235,219)',
-	text: 'white',
-	// text: 'rgb(239,243,229)',
-	background: 'rgb(236,238,237)',
-	tertiary: 'rgb(188,187,187)',
+export const themeColorSchemes = {
+	mint: {
+		primary: 'rgb(176,216,197)',
+		secondary: 'rgb(218,235,219)',
+		text: 'rgb(255,255,255)',
+		background: 'rgb(236,238,237)',
+		tertiary: 'rgb(188,187,187)',
+	},
+	seascape: {
+		primary: 'rgb(43,93,104)',
+		secondary: 'rgb(125,187,185)',
+		text: 'rgb(242,242,242)',
+		background: 'rgb(216,211,208)',
+		tertiary: 'rgb(157,168,168)',
+	},
+	monochrome: {
+		primary: 'rgb(63,63,63)',
+		secondary: 'rgb(168,168,168)',
+		text: 'rgb(242,242,242)',
+		background: 'rgb(211,211,211)',
+		tertiary: 'rgb(3,3,3)',
+	},
+	moroccan: {
+		primary: 'rgb(167,70,45)',
+		secondary: 'rgb(208,115,71)',
+		text: 'rgb(231,196,168)',
+		background: 'rgb(236,238,237)',
+		tertiary: 'rgb(80,41,32)',
+	},
 }
 
 export const layout = {
-	borderRadiusPx: '10px',
 	unit: 8,
+	borderRadiusPx: '10px',
+	transitionTime: '250ms',
 }

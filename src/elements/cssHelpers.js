@@ -1,8 +1,9 @@
+import { css } from 'styled-components'
 import { layout } from 'theme'
 
-const { borderRadiusPx: bR } = layout
+const { borderRadiusPx: bR, transitionTime } = layout
 
-export const whichBorderRadius = side => {
+export const outputBorderRadius = side => {
 	switch (side) {
 		case 'top':
 			return `border-radius: ${bR} ${bR} 0 0;`
@@ -16,3 +17,10 @@ export const whichBorderRadius = side => {
 			return ';'
 	}
 }
+
+export const transitionProperty = property => css`
+	-webkit-transition: ${property} ${transitionTime};
+	-moz-transition: ${property} ${transitionTime};
+	-o-transition: ${property} ${transitionTime};
+	transition: ${property} ${transitionTime};
+`

@@ -1,18 +1,15 @@
 import styled, { css } from 'styled-components'
 import { layout } from 'theme'
-import { whichBorderRadius } from 'elements/cssHelpers'
+import { outputBorderRadius, transitionProperty } from 'elements/cssHelpers'
 
 const { unit } = layout
 
 export const Input = styled.input`
 	padding: ${unit}px;
-	-webkit-transition: background-color 500ms;
-	-moz-transition: background-color 500ms;
-	-o-transition: background-color 500ms;
-	transition: background-color 500ms;
+	${transitionProperty('background-color')}
 
-	${({ borderRadius }) => whichBorderRadius(borderRadius)}
-	${({ theme }) => css`
+	${({ theme, borderRadius }) => css`
+		${outputBorderRadius(borderRadius)}
 		background-color: ${theme.secondary};
 		:focus {
 			background-color: ${theme.primary};

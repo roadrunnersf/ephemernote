@@ -1,7 +1,7 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { TitleTabs, AddTab } from 'components/notes'
+import { TitleTabs, AddTab, ActionButtons } from 'components/notes'
 import { TextArea } from 'elements/TextArea'
 import { PageContainer, ContentContainer, ContentBox } from 'elements/shared'
 
@@ -11,10 +11,13 @@ import {
 	createNewTab,
 	setAddTabValue,
 } from 'store/notes'
+import { cycleThemeColor } from 'store/app'
 
 import { findNoteWithID } from 'utils'
 
 export const NotesPage = () => {
+	const textAreaRef = useRef()
+
 	const dispatch = useDispatch()
 
 	const notes = useSelector(state => state.notes.data)
@@ -24,7 +27,7 @@ export const NotesPage = () => {
 
 	const currentNote = findNoteWithID(notes, currentNoteID)
 
-	const titleTabData = useMemo(
+	const titleTabsData = useMemo(
 		() =>
 			notes.map(({ title, id, sortIndex }) => ({
 				title,
@@ -35,12 +38,16 @@ export const NotesPage = () => {
 	)
 
 	const dispatchUpdateCurrentNoteID = useCallback(
-		id => dispatch(updateCurrentNoteID(id)),
+		id => {
+			dispatch(updateCurrentNoteID(id))
+			textAreaRef.current.focus()
+		},
 		[dispatch]
 	)
 
 	const dispatchCreateNewTab = useCallback(() => {
 		dispatch(createNewTab())
+		textAreaRef.current.focus()
 	}, [dispatch])
 
 	const dispatchSetAddTabValue = useCallback(
@@ -49,16 +56,24 @@ export const NotesPage = () => {
 		},
 		[dispatch]
 	)
-	const dispatchTextAreaChange = event => {
-		dispatch(updateCurrentNoteText(event.target.value))
-	}
+
+	const dispatchTextAreaChange = useCallback(
+		event => {
+			dispatch(updateCurrentNoteText(event.target.value))
+		},
+		[dispatch]
+	)
+
+	const dispatchCycleThemeColor = useCallback(() => {
+		dispatch(cycleThemeColor())
+	}, [dispatch])
 
 	return (
 		<PageContainer>
 			<ContentContainer>
 				<ContentBox>
 					<TitleTabs
-						titleTabData={titleTabData}
+						titleTabsData={titleTabsData}
 						currentNoteID={currentNoteID}
 						dispatchUpdateCurrentNoteID={
 							dispatchUpdateCurrentNoteID
@@ -70,14 +85,29 @@ export const NotesPage = () => {
 						value={currentNote.text}
 						onChange={dispatchTextAreaChange}
 						fontFamily={currentNote.fontFamily}
+						ref={textAreaRef}
 					/>
 				</ContentBox>
-				<ContentBox>
-					<AddTab
-						addTabValue={addTabValue}
-						dispatchSetAddTabValue={dispatchSetAddTabValue}
-						dispatchCreateNewTab={dispatchCreateNewTab}
-					/>
+				<ContentBox justifyContent="space-between">
+					<div>
+						<AddTab
+							addTabValue={addTabValue}
+							dispatchSetAddTabValue={dispatchSetAddTabValue}
+							dispatchCreateNewTab={dispatchCreateNewTab}
+						/>
+					</div>
+					<div>
+						{/* <div
+							style={{
+								width: 50,
+								height: 50,
+								backgroundColor: 'red',
+							}}
+						/> */}
+						<ActionButtons
+							dispatchCycleThemeColor={dispatchCycleThemeColor}
+						/>
+					</div>
 				</ContentBox>
 			</ContentContainer>
 		</PageContainer>

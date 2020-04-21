@@ -1,34 +1,33 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
+import { useSelector } from 'react-redux'
 
-import { store } from 'store'
-import { mintTheme } from 'theme'
+import { themeColorSchemes } from 'theme'
 
 import { NotesPage } from 'pages/NotesPage'
 import { GlobalStyle } from 'elements/shared'
 
-import 'App.css'
-
 export const App = () => {
+	const storeThemeColor = useSelector(state => state.app.themeColor)
+
+	const theme = themeColorSchemes[storeThemeColor]
+
 	return (
 		<>
-			<Provider store={store}>
-				<ThemeProvider theme={mintTheme}>
-					<GlobalStyle />
-					<Router>
-						<Switch>
-							<Route path="/">
-								<NotesPage />
-							</Route>
-							<Route path="/notes">
-								<NotesPage />
-							</Route>
-						</Switch>
-					</Router>
-				</ThemeProvider>
-			</Provider>
+			<ThemeProvider theme={theme}>
+				<GlobalStyle />
+				<Router>
+					<Switch>
+						<Route path="/">
+							<NotesPage />
+						</Route>
+						<Route path="/notes">
+							<NotesPage />
+						</Route>
+					</Switch>
+				</Router>
+			</ThemeProvider>
 		</>
 	)
 }

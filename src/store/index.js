@@ -1,7 +1,9 @@
 import { createStore, combineReducers } from 'redux'
+import { appReducer } from 'store/app'
 import { notesReducer } from 'store/notes'
 
 const rootReducer = combineReducers({
+	app: appReducer,
 	notes: notesReducer,
 })
 

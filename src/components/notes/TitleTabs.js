@@ -1,19 +1,22 @@
 import React, { memo } from 'react'
+import PropTypes from 'prop-types'
+
 import orderBy from 'lodash/orderBy'
 
-import { TabButton } from 'elements/TextArea'
+import { TabButton } from 'elements/shared'
 
 export const TitleTabs = memo(
-	({ titleTabData, currentNoteID, dispatchUpdateCurrentNoteID }) => {
-		const sortedTitleTabData = orderBy(titleTabData, 'sortIndex', 'asc')
+	({ titleTabsData, currentNoteID, dispatchUpdateCurrentNoteID }) => {
+		const sortedtitleTabsData = orderBy(titleTabsData, 'sortIndex', 'asc')
 
 		return (
 			<>
-				{sortedTitleTabData.map(({ id, title }) => (
+				{sortedtitleTabsData.map(({ id, title }) => (
 					<TabButton
 						onClick={() => dispatchUpdateCurrentNoteID(id)}
 						key={id}
 						active={id === currentNoteID}
+						rounding="top"
 					>
 						{title}
 					</TabButton>
@@ -22,3 +25,9 @@ export const TitleTabs = memo(
 		)
 	}
 )
+
+TitleTabs.propTypes = {
+	titleTabsData: PropTypes.array.isRequired,
+	currentNoteID: PropTypes.number.isRequired,
+	dispatchUpdateCurrentNoteID: PropTypes.func.isRequired,
+}

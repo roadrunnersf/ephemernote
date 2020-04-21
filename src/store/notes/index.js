@@ -1,9 +1,11 @@
 import produce from 'immer'
 
 import { findIndexOfNoteWithID } from 'utils'
-import { findNewNoteID, canCreateTab } from 'store/utils'
+import { findNewNoteID, canCreateTab } from 'store/notes/utils'
+import { initialState } from './initialState'
 
-//actions
+// actions
+
 const UPDATE_CURRENT_NOTE_ID = 'Update current note ID'
 const UPDATE_CURRENT_NOTE_TEXT = 'Update current note text'
 const CREATE_NEW_TAB = 'Create new tab'
@@ -28,29 +30,6 @@ export const setAddTabValue = newString => ({
 	type: SET_ADD_TAB_VALUE,
 	newString,
 })
-
-// initialState
-
-const initialState = {
-	currentNoteID: 0,
-	data: [
-		{
-			id: 0,
-			title: 'HelloWorld',
-			text: 'Hello world!!!',
-			fontFamily: null,
-			sortIndex: 0,
-		},
-		{
-			id: 1,
-			title: 'tab2',
-			text: 'some other text',
-			fontFamily: 'Monospace',
-			sortIndex: 1,
-		},
-	],
-	addTabValue: '',
-}
 
 // reducer
 
@@ -107,7 +86,7 @@ export const notesReducer = (state = initialState, action) => {
 	}
 }
 
-// other
+// templates
 
 const text = ''
 const font = null

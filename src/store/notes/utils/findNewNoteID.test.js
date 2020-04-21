@@ -4,7 +4,7 @@ const createMockStateFromArray = idArray => idArray.map(id => ({ id }))
 
 describe('findNewNoteID', () => {
 	it('Returns 0 when given an empty array', () => {
-		expect(findNewNoteID({ data: [] })).toBe(0)
+		expect(findNewNoteID([])).toBe(0)
 	})
 
 	it('Returns the next ID when a list of IDs are present', () => {

@@ -7,6 +7,13 @@ export const AddTab = memo(
 	({ addTabValue, dispatchSetAddTabValue, dispatchCreateNewTab }) => {
 		const hasContent = !!addTabValue
 
+		const enterKeyCreateNewTab = event => {
+			if (event.key === 'Enter') {
+				event.preventDefault()
+				dispatchCreateNewTab()
+			}
+		}
+
 		return (
 			<>
 				<Input
@@ -14,9 +21,9 @@ export const AddTab = memo(
 					name="newTabName"
 					value={addTabValue}
 					onChange={dispatchSetAddTabValue}
+					onKeyDown={enterKeyCreateNewTab}
 					placeholder="Enter new tab name..."
 					borderRadius="bottom"
-					// hasContent={hasContent}
 				/>
 				{hasContent && (
 					<Button

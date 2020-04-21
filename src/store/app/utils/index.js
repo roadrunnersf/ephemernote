@@ -1,0 +1,1 @@
+export { calculateNextColor } from './calculateNextColor'
