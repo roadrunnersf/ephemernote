@@ -55,7 +55,7 @@ export const NotesPage = () => {
 	const dispatchToggleShowAddNoteInput = useCallback(() => {
 		dispatch(toggleShowAddNoteInput())
 		addNoteInputRef.current.focus()
-	}, [dispatch])
+	}, [dispatch, addNoteInputRef])
 	const dispatchDeleteCurrentNote = useCallback(() => {
 		dispatch(deleteCurrentNote())
 	}, [dispatch])

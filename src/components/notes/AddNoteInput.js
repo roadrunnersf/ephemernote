@@ -37,7 +37,6 @@ export const AddNoteInput = memo(
 		}
 
 		return (
-			// showAddNoteInput && (
 			<>
 				<Input
 					show={showAddNoteInput}
@@ -61,7 +60,6 @@ export const AddNoteInput = memo(
 					</Button>
 				)}
 			</>
-			// )
 		)
 	})
 )
