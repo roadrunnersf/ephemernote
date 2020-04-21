@@ -8,15 +8,19 @@ import { initialState } from './initialState'
 
 const UPDATE_CURRENT_NOTE_ID = 'Update current note ID'
 const UPDATE_CURRENT_NOTE_TEXT = 'Update current note text'
+
 const CREATE_NEW_NOTE = 'Create new note'
+
 const SET_ADD_NOTE_INPUT_VALUE = 'Set add note input value'
+
+const TOGGLE_SHOW_ADD_NOTE_INPUT = 'Toggle show add note input'
+// const HIDE_ADD_NOTE_INPUT = 'Hide add note input'
 
 //action creators
 export const updateCurrentNoteID = id => ({
 	type: UPDATE_CURRENT_NOTE_ID,
 	id,
 })
-
 export const updateCurrentNoteText = text => ({
 	type: UPDATE_CURRENT_NOTE_TEXT,
 	text,
@@ -30,6 +34,13 @@ export const setAddNoteInputValue = newString => ({
 	type: SET_ADD_NOTE_INPUT_VALUE,
 	newString,
 })
+
+export const toggleShowAddNoteInput = () => ({
+	type: TOGGLE_SHOW_ADD_NOTE_INPUT,
+})
+// export const hideAddNoteInput = () => ({
+// 	type: HIDE_ADD_NOTE_INPUT,
+// })
 
 // reducer
 
@@ -46,9 +57,10 @@ export const notesReducer = (state = initialState, action) => {
 			})
 
 		case UPDATE_CURRENT_NOTE_ID:
-			return produce(state, draft => {
-				draft.currentNoteID = action.id
-			})
+			return {
+				...state,
+				currentNoteID: action.id,
+			}
 
 		case CREATE_NEW_NOTE:
 			const notesData = state.data
@@ -73,13 +85,21 @@ export const notesReducer = (state = initialState, action) => {
 					})
 				)
 				draft.currentNoteID = newNoteID
+				draft.showAddNoteInput = false
 				draft.addNoteInputValue = ''
 			})
 
 		case SET_ADD_NOTE_INPUT_VALUE:
-			return produce(state, draft => {
-				draft.addNoteInputValue = action.newString
-			})
+			return {
+				...state,
+				addNoteInputValue: action.newString,
+			}
+
+		case TOGGLE_SHOW_ADD_NOTE_INPUT:
+			return {
+				...state,
+				showAddNoteInput: !state.showAddNoteInput,
+			}
 
 		default:
 			return state

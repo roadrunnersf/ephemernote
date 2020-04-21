@@ -18,5 +18,6 @@ export const initialState = {
 			sortIndex: 1,
 		},
 	],
+	showAddNoteInput: false,
 	addNoteInputValue: '',
 }

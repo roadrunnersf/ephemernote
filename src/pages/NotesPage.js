@@ -8,8 +8,7 @@ import { PageContainer, ContentContainer, ContentBox } from 'elements/shared'
 import {
 	updateCurrentNoteText,
 	updateCurrentNoteID,
-	createNewNote,
-	setAddNoteInputValue,
+	toggleShowAddNoteInput,
 } from 'store/notes'
 import { cycleThemeColor } from 'store/app'
 
@@ -17,15 +16,13 @@ import { findNoteWithID } from 'utils'
 
 export const NotesPage = () => {
 	const textAreaRef = useRef()
+	const addNoteInputRef = useRef()
 
 	const dispatch = useDispatch()
 
 	const notes = useSelector(state => state.notes.data)
 
 	const currentNoteID = useSelector(state => state.notes.currentNoteID)
-	const addNoteInputValue = useSelector(
-		state => state.notes.addNoteInputValue
-	)
 
 	const currentNote = findNoteWithID(notes, currentNoteID)
 
@@ -47,18 +44,6 @@ export const NotesPage = () => {
 		[dispatch]
 	)
 
-	const dispatchCreateNewNote = useCallback(() => {
-		dispatch(createNewNote())
-		textAreaRef.current.focus()
-	}, [dispatch])
-
-	const dispatchSetAddNoteInputValue = useCallback(
-		event => {
-			dispatch(setAddNoteInputValue(event.target.value))
-		},
-		[dispatch]
-	)
-
 	const dispatchTextAreaChange = useCallback(
 		event => {
 			dispatch(updateCurrentNoteText(event.target.value))
@@ -68,6 +53,11 @@ export const NotesPage = () => {
 
 	const dispatchCycleThemeColor = useCallback(() => {
 		dispatch(cycleThemeColor())
+	}, [dispatch])
+
+	const dispatchToggleShowAddNoteInput = useCallback(() => {
+		dispatch(toggleShowAddNoteInput())
+		addNoteInputRef.current.focus()
 	}, [dispatch])
 
 	return (
@@ -93,23 +83,16 @@ export const NotesPage = () => {
 				<ContentBox justifyContent="space-between">
 					<div>
 						<AddNoteInput
-							addNoteInputValue={addNoteInputValue}
-							dispatchSetAddNoteInputValue={
-								dispatchSetAddNoteInputValue
-							}
-							dispatchCreateNewNote={dispatchCreateNewNote}
+							textAreaRef={textAreaRef}
+							ref={addNoteInputRef}
 						/>
 					</div>
 					<div>
-						{/* <div
-							style={{
-								width: 50,
-								height: 50,
-								backgroundColor: 'red',
-							}}
-						/> */}
 						<ActionButtons
 							dispatchCycleThemeColor={dispatchCycleThemeColor}
+							dispatchToggleShowAddNoteInput={
+								dispatchToggleShowAddNoteInput
+							}
 						/>
 					</div>
 				</ContentBox>

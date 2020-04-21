@@ -6,9 +6,9 @@ const { unit } = layout
 
 export const Input = styled.input`
 	padding: ${unit}px;
-	${transitionProperty('background-color')}
+	${transitionProperty('background-color ')}
 
-	${({ theme, borderRadius }) => css`
+	${({ theme, borderRadius, show = true }) => css`
 		${outputBorderRadius(borderRadius)}
 		background-color: ${theme.secondary};
 		:focus {
@@ -18,6 +18,7 @@ export const Input = styled.input`
 			color: ${theme.text};
 			opacity: 1;
 		}
+		${!show && 'opacity: 0;'}
 	`}
 `
 // ${({ hasContent, theme }) =>

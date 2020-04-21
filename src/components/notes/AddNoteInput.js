@@ -1,14 +1,32 @@
-import React, { memo } from 'react'
-import PropTypes from 'prop-types'
+import React, { memo, useCallback, forwardRef } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { Input, Button } from 'elements/shared'
+import { createNewNote, setAddNoteInputValue } from 'store/notes'
 
 export const AddNoteInput = memo(
-	({
-		addNoteInputValue,
-		dispatchSetAddNoteInputValue,
-		dispatchCreateNewNote,
-	}) => {
+	forwardRef(({ textAreaRef }, ref) => {
+		const dispatch = useDispatch()
+
+		const showAddNoteInput = useSelector(
+			state => state.notes.showAddNoteInput
+		)
+		const addNoteInputValue = useSelector(
+			state => state.notes.addNoteInputValue
+		)
+
+		const dispatchCreateNewNote = useCallback(() => {
+			dispatch(createNewNote())
+			textAreaRef.current.focus()
+		}, [dispatch, textAreaRef])
+
+		const dispatchSetAddNoteInputValue = useCallback(
+			event => {
+				dispatch(setAddNoteInputValue(event.target.value))
+			},
+			[dispatch]
+		)
+
 		const hasContent = !!addNoteInputValue
 
 		const enterKeyCreateNewNote = event => {
@@ -19,8 +37,10 @@ export const AddNoteInput = memo(
 		}
 
 		return (
+			// showAddNoteInput && (
 			<>
 				<Input
+					show={showAddNoteInput}
 					type="text"
 					name="newTabName"
 					value={addNoteInputValue}
@@ -28,6 +48,8 @@ export const AddNoteInput = memo(
 					onKeyDown={enterKeyCreateNewNote}
 					placeholder="Enter new note name..."
 					borderRadius="bottom"
+					autoComplete="off"
+					ref={ref}
 				/>
 				{hasContent && (
 					<Button
@@ -39,12 +61,7 @@ export const AddNoteInput = memo(
 					</Button>
 				)}
 			</>
+			// )
 		)
-	}
+	})
 )
-
-AddNoteInput.propTypes = {
-	addNoteInputValue: PropTypes.string.isRequired,
-	dispatchSetAddNoteInputValue: PropTypes.func.isRequired,
-	dispatchCreateNewNote: PropTypes.func.isRequired,
-}
