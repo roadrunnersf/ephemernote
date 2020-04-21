@@ -36,18 +36,18 @@ export const setAddTabValue = newString => ({
 export const notesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case UPDATE_CURRENT_NOTE_TEXT:
-			return produce(state, draftState => {
-				const indexOfCurrentNote = findIndexOfNoteWithID(
-					draftState.data,
-					draftState.currentNoteID
-				)
+			const indexOfCurrentNote = findIndexOfNoteWithID(
+				state.data,
+				state.currentNoteID
+			)
 
-				draftState.data[indexOfCurrentNote].text = action.text
+			return produce(state, draft => {
+				draft.data[indexOfCurrentNote].text = action.text
 			})
 
 		case UPDATE_CURRENT_NOTE_ID:
-			return produce(state, draftState => {
-				draftState.currentNoteID = action.id
+			return produce(state, draft => {
+				draft.currentNoteID = action.id
 			})
 
 		case CREATE_NEW_TAB:
@@ -64,21 +64,21 @@ export const notesReducer = (state = initialState, action) => {
 			const newNoteID = findNewNoteID(notesData)
 			const newNoteSortIndex = Math.max(...notesSortIndexList) + 1
 
-			return produce(state, draftState => {
-				draftState.data.push(
+			return produce(state, draft => {
+				draft.data.push(
 					newNoteShape({
 						title: newTitle,
 						id: newNoteID,
 						sortIndex: newNoteSortIndex,
 					})
 				)
-				draftState.currentNoteID = newNoteID
-				draftState.addTabValue = ''
+				draft.currentNoteID = newNoteID
+				draft.addTabValue = ''
 			})
 
 		case SET_ADD_TAB_VALUE:
-			return produce(state, draftState => {
-				draftState.addTabValue = action.newString
+			return produce(state, draft => {
+				draft.addTabValue = action.newString
 			})
 
 		default:
