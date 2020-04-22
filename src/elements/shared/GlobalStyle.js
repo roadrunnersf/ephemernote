@@ -23,7 +23,11 @@ export const GlobalStyle = createGlobalStyle`
 		border: none;
 		box-shadow: none;
 		:focus {
-		outline: 0;
+			outline: 0;
+		}
 	}
+
+	textarea {
+		cursor: auto;
 	}
 `
