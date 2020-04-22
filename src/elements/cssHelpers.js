@@ -18,9 +18,9 @@ export const outputBorderRadius = side => {
 	}
 }
 
-export const transitionProperty = property => css`
-	-webkit-transition: ${property} ${transitionTime};
-	-moz-transition: ${property} ${transitionTime};
-	-o-transition: ${property} ${transitionTime};
-	transition: ${property} ${transitionTime};
+export const transitionProperty = (property, inputTime = transitionTime) => css`
+	-webkit-transition: ${property} ${inputTime};
+	-moz-transition: ${property} ${inputTime};
+	-o-transition: ${property} ${inputTime};
+	transition: ${property} ${inputTime};
 `
