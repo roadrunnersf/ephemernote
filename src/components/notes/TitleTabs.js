@@ -11,16 +11,22 @@ export const TitleTabs = memo(
 
 		return (
 			<>
-				{sortedtitleTabsData.map(({ id, title }) => (
-					<NoteTitleTab
-						onClick={() => dispatchUpdateCurrentNoteID(id)}
-						key={id}
-						active={id === currentNoteID}
-						rounding="top"
-					>
-						{title}
-					</NoteTitleTab>
-				))}
+				{sortedtitleTabsData.map(({ id, title }) => {
+					const active = id === currentNoteID
+
+					return (
+						<NoteTitleTab
+							onClick={() =>
+								active || dispatchUpdateCurrentNoteID(id)
+							}
+							key={id}
+							active={active}
+							rounding="top"
+						>
+							{title}
+						</NoteTitleTab>
+					)
+				})}
 			</>
 		)
 	}
