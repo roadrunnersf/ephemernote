@@ -50,7 +50,7 @@ export const AddNoteInput = memo(
 					autoComplete="off"
 					ref={ref}
 				/>
-				{hasContent && (
+				{hasContent && showAddNoteInput && (
 					<Button
 						onClick={dispatchCreateNewNote}
 						borderRadius="bottom"
