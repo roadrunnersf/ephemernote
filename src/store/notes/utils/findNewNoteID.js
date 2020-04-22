@@ -1,10 +1,9 @@
 export const findNewNoteID = notesData => {
-	const notesLength = notesData.length ?? 0
-
-	for (let i = 0; i < notesLength; i++) {
-		if (i !== notesData[i].id) {
-			return i
-		}
+	if (notesData.length === 0) {
+		return 0
 	}
-	return notesLength
+
+	const idList = notesData.map(({ id }) => id)
+
+	return Math.max(...idList) + 1
 }

@@ -12,8 +12,8 @@ describe('findNewNoteID', () => {
 		expect(findNewNoteID(createMockStateFromArray([0, 1, 2, 3]))).toBe(4)
 	})
 
-	it('Returns the missing ID when a sequential ID is missing', () => {
-		expect(findNewNoteID(createMockStateFromArray([1, 2]))).toBe(0)
-		expect(findNewNoteID(createMockStateFromArray([0, 2]))).toBe(1)
+	it('Returns high ID when a sequential ID is missing', () => {
+		expect(findNewNoteID(createMockStateFromArray([1, 2]))).toBe(3)
+		expect(findNewNoteID(createMockStateFromArray([0, 2, 3]))).toBe(4)
 	})
 })
