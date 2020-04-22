@@ -22,6 +22,9 @@ export const NotesPage = () => {
 	const dispatch = useDispatch()
 
 	const notes = useSelector(state => state.notes.data)
+	const roundBottomLeftCorner = !useSelector(
+		state => state.notes.showAddNoteInput
+	)
 
 	const currentNoteID = useSelector(state => state.notes.currentNoteID)
 
@@ -36,13 +39,12 @@ export const NotesPage = () => {
 			})),
 		[notes]
 	)
-
 	const dispatchUpdateCurrentNoteID = useCallback(
 		id => {
 			dispatch(updateCurrentNoteID(id))
 			textAreaRef.current.focus()
 		},
-		[dispatch]
+		[dispatch, textAreaRef]
 	)
 
 	const dispatchTextAreaChange = useCallback(
@@ -80,6 +82,7 @@ export const NotesPage = () => {
 						value={currentNote.text}
 						onChange={dispatchTextAreaChange}
 						fontFamily={currentNote.fontFamily}
+						roundBottomLeftCorner={roundBottomLeftCorner}
 						ref={textAreaRef}
 					/>
 				</ContentBox>

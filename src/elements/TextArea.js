@@ -21,7 +21,12 @@ export const TextArea = styled.textarea`
 		scroll-behavior: smooth !important;
 	}
 
-	${({ theme, fontFamily }) => css`
+	${({ theme, fontFamily, roundBottomLeftCorner }) => css`
+		${
+			roundBottomLeftCorner
+				? `border-radius: 0 ${bR} ${bR} ${bR};`
+				: `border-radius: 0 ${bR} ${bR} 0;`
+		}
 		background-color: ${theme.primary};
 		::-webkit-scrollbar-track {
 			border-radius: ${bR};
@@ -31,8 +36,10 @@ export const TextArea = styled.textarea`
 			background: ${theme.tertiary};
 			border-radius: ${bR};
 		}
-		${fontFamily === 'Monospace'
-			? `font-family: monospace, monospace;`
-			: `font-family: inherit;`}
+		${
+			fontFamily === 'Monospace'
+				? `font-family: monospace, monospace;`
+				: `font-family: inherit;`
+		}
 	`}
 `
