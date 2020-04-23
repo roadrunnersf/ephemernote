@@ -11,7 +11,9 @@ import { initialState } from './initialState'
 // actions
 
 const UPDATE_CURRENT_NOTE_ID = 'Update current note ID'
+
 const UPDATE_CURRENT_NOTE_TEXT = 'Update current note text'
+const CYCLE_CURRENT_NOTE_FONT_FAMILY = 'Cycle current note fontFamily'
 
 const CREATE_NEW_NOTE = 'Create new note'
 const DELETE_CURRENT_NOTE = 'Delete current note'
@@ -29,6 +31,10 @@ export const updateCurrentNoteID = id => ({
 export const updateCurrentNoteText = text => ({
 	type: UPDATE_CURRENT_NOTE_TEXT,
 	text,
+})
+
+export const cycleCurrentNoteFontFamily = () => ({
+	type: CYCLE_CURRENT_NOTE_FONT_FAMILY,
 })
 
 export const createNewNote = () => ({
@@ -53,6 +59,7 @@ export const notesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case UPDATE_CURRENT_NOTE_TEXT:
 		case DELETE_CURRENT_NOTE:
+		case CYCLE_CURRENT_NOTE_FONT_FAMILY:
 			const indexOfCurrentNote = findIndexOfNoteWithID(
 				state.data,
 				state.currentNoteID
@@ -75,6 +82,16 @@ export const notesReducer = (state = initialState, action) => {
 					} else {
 						return state
 					}
+				case CYCLE_CURRENT_NOTE_FONT_FAMILY:
+					return produce(state, draft => {
+						let currentNoteFontFamily =
+							draft.data[indexOfCurrentNote].fontFamily
+						const newFont = currentNoteFontFamily
+							? null
+							: 'Monospace'
+
+						draft.data[indexOfCurrentNote].fontFamily = newFont
+					})
 			}
 			break
 

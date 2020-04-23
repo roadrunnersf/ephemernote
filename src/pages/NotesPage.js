@@ -10,6 +10,7 @@ import {
 	updateCurrentNoteID,
 	toggleShowAddNoteInput,
 	deleteCurrentNote,
+	cycleCurrentNoteFontFamily,
 } from 'store/notes'
 import { cycleThemeColor } from 'store/app'
 
@@ -64,6 +65,9 @@ export const NotesPage = () => {
 	const dispatchCycleThemeColor = useCallback(() => {
 		dispatch(cycleThemeColor())
 	}, [dispatch])
+	const dispatchCycleCurrentNoteFontFamily = useCallback(() => {
+		dispatch(cycleCurrentNoteFontFamily())
+	}, [dispatch])
 
 	return (
 		<PageContainer>
@@ -102,6 +106,9 @@ export const NotesPage = () => {
 								dispatchToggleShowAddNoteInput
 							}
 							dispatchCycleThemeColor={dispatchCycleThemeColor}
+							dispatchCycleCurrentNoteFontFamily={
+								dispatchCycleCurrentNoteFontFamily
+							}
 						/>
 					</div>
 				</ContentBox>

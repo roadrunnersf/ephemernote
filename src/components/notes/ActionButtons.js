@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-import { mdiPlus, mdiTrashCanOutline, mdiPalette } from '@mdi/js'
+import { mdiPlus, mdiTrashCanOutline, mdiPalette, mdiFormatFont } from '@mdi/js'
 
 import { Icon } from 'elements/shared'
 
@@ -9,6 +9,7 @@ export const ActionButtons = memo(
 		dispatchCycleThemeColor,
 		dispatchToggleShowAddNoteInput,
 		dispatchDeleteCurrentNote,
+		dispatchCycleCurrentNoteFontFamily,
 	}) => {
 		const actionButtons = [
 			{
@@ -20,6 +21,11 @@ export const ActionButtons = memo(
 				title: 'Delete current note',
 				path: mdiTrashCanOutline,
 				onClick: dispatchDeleteCurrentNote,
+			},
+			{
+				title: 'Change current note font',
+				path: mdiFormatFont,
+				onClick: dispatchCycleCurrentNoteFontFamily,
 			},
 			{
 				title: 'Change theme',
