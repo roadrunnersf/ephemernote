@@ -44,6 +44,8 @@ describe('TitleTabs', () => {
 		it('calls dispatch function when clicking on a not active tab', () => {
 			const positionToClick = 1
 
+			expect(spyDispatchUpdateCurrentNoteID).toHaveBeenCalledTimes(0)
+
 			findNoteTitleTab(wrapper).at(positionToClick).simulate('click')
 
 			expect(spyDispatchUpdateCurrentNoteID).toHaveBeenCalledWith(
