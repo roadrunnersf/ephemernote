@@ -22,6 +22,7 @@ export const TitleTabs = memo(
 							key={id}
 							active={active}
 							rounding="top"
+							data-testid="NoteTitleTab"
 						>
 							{title}
 						</NoteTitleTab>
