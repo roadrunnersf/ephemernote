@@ -8,50 +8,15 @@ import {
 } from 'store/notes/utils'
 import { initialState } from './initialState'
 
-// actions
-
-const UPDATE_CURRENT_NOTE_ID = 'Update current note ID'
-
-const UPDATE_CURRENT_NOTE_TEXT = 'Update current note text'
-const CYCLE_CURRENT_NOTE_FONT_FAMILY = 'Cycle current note fontFamily'
-
-const CREATE_NEW_NOTE = 'Create new note'
-const DELETE_CURRENT_NOTE = 'Delete current note'
-
-const SET_ADD_NOTE_INPUT_VALUE = 'Set add note input value'
-
-const TOGGLE_SHOW_ADD_NOTE_INPUT = 'Toggle show add note input'
-
-//action creators
-
-export const updateCurrentNoteID = id => ({
-	type: UPDATE_CURRENT_NOTE_ID,
-	id,
-})
-export const updateCurrentNoteText = text => ({
-	type: UPDATE_CURRENT_NOTE_TEXT,
-	text,
-})
-
-export const cycleCurrentNoteFontFamily = () => ({
-	type: CYCLE_CURRENT_NOTE_FONT_FAMILY,
-})
-
-export const createNewNote = () => ({
-	type: CREATE_NEW_NOTE,
-})
-export const deleteCurrentNote = () => ({
-	type: DELETE_CURRENT_NOTE,
-})
-
-export const setAddNoteInputValue = newString => ({
-	type: SET_ADD_NOTE_INPUT_VALUE,
-	newString,
-})
-
-export const toggleShowAddNoteInput = () => ({
-	type: TOGGLE_SHOW_ADD_NOTE_INPUT,
-})
+import {
+	UPDATE_CURRENT_NOTE_ID,
+	UPDATE_CURRENT_NOTE_TEXT,
+	CYCLE_CURRENT_NOTE_FONT_FAMILY,
+	CREATE_NEW_NOTE,
+	DELETE_CURRENT_NOTE,
+	SET_ADD_NOTE_INPUT_VALUE,
+	TOGGLE_SHOW_ADD_NOTE_INPUT,
+} from 'store/notes/actions'
 
 // reducer
 
@@ -84,7 +49,7 @@ export const notesReducer = (state = initialState, action) => {
 					}
 				case CYCLE_CURRENT_NOTE_FONT_FAMILY:
 					return produce(state, draft => {
-						let currentNoteFontFamily =
+						const currentNoteFontFamily =
 							draft.data[indexOfCurrentNote].fontFamily
 						const newFont = currentNoteFontFamily
 							? null

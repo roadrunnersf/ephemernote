@@ -20,8 +20,10 @@ export const store = createStore(
 
 store.subscribe(
 	throttle(() => {
-		saveState({
+		const currentStoreState = {
 			...store.getState(),
-		})
+		}
+
+		saveState(currentStoreState)
 	}, 1500)
 )

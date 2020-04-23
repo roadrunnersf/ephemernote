@@ -2,7 +2,7 @@ import React, { memo, useCallback, forwardRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { Input, Button } from 'elements/shared'
-import { createNewNote, setAddNoteInputValue } from 'store/notes'
+import { createNewNote, setAddNoteInputValue } from 'store/notes/actionCreators'
 
 export const AddNoteInput = memo(
 	forwardRef(({ textAreaRef }, ref) => {
