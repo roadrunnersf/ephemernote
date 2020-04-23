@@ -1,9 +1,17 @@
-// import React from 'react'
-// import { render } from '@testing-library/react'
-// import { App } from './App'
+import React from 'react'
+import { mount } from 'enzyme'
+import { Provider } from 'react-redux'
 
-test('renders learn react link', () => {
-	// const { getByText } = render(<App />)
-	// const linkElement = getByText(/learn react/i)
-	// expect(linkElement).toBeInTheDocument()
+import { App } from 'App'
+import { store } from 'store'
+
+describe('App', () => {
+	it('Renders with no errors', () => {
+		// eslint-disable-next-line no-unused-vars
+		const wrapper = mount(
+			<Provider store={store}>
+				<App />
+			</Provider>
+		)
+	})
 })
