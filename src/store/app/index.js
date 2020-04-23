@@ -1,8 +1,8 @@
-import { calculateNextColor } from './utils'
+import { calculateNextColor } from 'store/app/utils'
 
 // actions
 
-const CYCLE_THEME_COLOR = 'Cycle theme color'
+export const CYCLE_THEME_COLOR = 'Cycle theme color'
 // const SHOW_ADD_NOTE_INPUT = 'Show add note input'
 
 //action creators
@@ -15,7 +15,7 @@ export const cycleThemeColor = () => ({
 
 // reducer
 
-const initialState = {
+export const initialState = {
 	themeColor: 'mint',
 }
 
