@@ -79,6 +79,7 @@ export const NotesPage = () => {
 						dispatchUpdateCurrentNoteID={
 							dispatchUpdateCurrentNoteID
 						}
+						data-testid="NotesPage>TitleTabs"
 					/>
 				</ContentBox>
 				<ContentBox>
@@ -88,6 +89,7 @@ export const NotesPage = () => {
 						fontFamily={currentNote.fontFamily}
 						roundBottomLeftCorner={roundBottomLeftCorner}
 						ref={textAreaRef}
+						data-testid="NotesPage>TextArea"
 					/>
 				</ContentBox>
 				<ContentBox justifyContent="space-between">
@@ -109,6 +111,7 @@ export const NotesPage = () => {
 							dispatchCycleCurrentNoteFontFamily={
 								dispatchCycleCurrentNoteFontFamily
 							}
+							data-testid="NotesPage>ActionButtons"
 						/>
 					</div>
 				</ContentBox>

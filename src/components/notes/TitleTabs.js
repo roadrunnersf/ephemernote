@@ -22,7 +22,7 @@ export const TitleTabs = memo(
 							key={id}
 							active={active}
 							rounding="top"
-							data-testid="NoteTitleTab"
+							data-testid="TitleTabs>NoteTitleTab"
 						>
 							{title}
 						</NoteTitleTab>

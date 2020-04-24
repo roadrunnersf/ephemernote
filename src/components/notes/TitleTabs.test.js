@@ -18,7 +18,7 @@ const mockProps = {
 const { titleTabsData } = mockProps
 
 const findNoteTitleTab = wrapper =>
-	wrapper.find('[data-testid="NoteTitleTab"]').hostNodes()
+	wrapper.find('[data-testid="TitleTabs>NoteTitleTab"]').hostNodes()
 
 describe('TitleTabs', () => {
 	beforeEach(() => {
