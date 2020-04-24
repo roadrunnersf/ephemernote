@@ -10,7 +10,7 @@ export const TitleTabs = memo(
 		const sortedtitleTabsData = orderBy(titleTabsData, 'sortIndex', 'asc')
 
 		return (
-			<>
+			<div role="tablist">
 				{sortedtitleTabsData.map(({ id, title }) => {
 					const active = id === currentNoteID
 
@@ -22,13 +22,14 @@ export const TitleTabs = memo(
 							key={id}
 							active={active}
 							rounding="top"
+							role="tab"
 							data-testid="TitleTabs>NoteTitleTab"
 						>
 							{title}
 						</NoteTitleTab>
 					)
 				})}
-			</>
+			</div>
 		)
 	}
 )
