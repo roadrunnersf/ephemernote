@@ -1,4 +1,4 @@
-export const initialState = {
+const initialState = {
 	currentNoteID: 0,
 	data: [
 		{
@@ -21,3 +21,5 @@ export const initialState = {
 	showAddNoteInput: false,
 	addNoteInputValue: '',
 }
+
+export default initialState

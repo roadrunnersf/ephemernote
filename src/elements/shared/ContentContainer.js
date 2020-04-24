@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ContentContainer = styled.section`
+const ContentContainer = styled.section`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -9,3 +9,4 @@ export const ContentContainer = styled.section`
 	padding: 12px;
 	margin: 24px;
 `
+export default ContentContainer

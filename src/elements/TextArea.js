@@ -4,7 +4,7 @@ import { transitionProperty } from 'elements/cssHelpers'
 
 const { borderRadiusPx: bR, unit } = layout
 
-export const TextArea = styled.textarea`
+const TextArea = styled.textarea`
 	border-radius: 0 ${bR} ${bR} 0;
 	resize: none;
 	width: 100%;
@@ -43,3 +43,5 @@ export const TextArea = styled.textarea`
 		}
 	`}
 `
+
+export default TextArea

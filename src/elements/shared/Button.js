@@ -4,7 +4,7 @@ import { outputBorderRadius } from 'elements/cssHelpers'
 
 const { unit } = layout
 
-export const Button = styled.button`
+const Button = styled.button`
 	padding: ${unit}px;
 
 	${({ borderRadius, theme, variant = 'secondary' }) => css`
@@ -13,3 +13,5 @@ export const Button = styled.button`
 		background-color: ${theme[variant]}
 	`}
 `
+
+export default Button

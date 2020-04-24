@@ -17,7 +17,7 @@ const Tab = styled.button`
 		`}
 `
 
-export const NoteTitleTab = styled(Tab)`
+const NoteTitleTab = styled(Tab)`
 	${({ active, theme }) =>
 		css`
 			${active
@@ -25,3 +25,5 @@ export const NoteTitleTab = styled(Tab)`
 				: `background-color: ${theme.secondary};`}
 		`}
 `
+
+export default NoteTitleTab

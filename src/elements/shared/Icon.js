@@ -7,7 +7,7 @@ import { layout } from 'theme'
 
 const { unit } = layout
 
-export const Icon = styled(mdiIcon)`
+const Icon = styled(mdiIcon)`
 	${({ theme }) => css`
 		color: ${theme.tertiary};
 		margin-right: ${unit}px;
@@ -18,3 +18,5 @@ export const Icon = styled(mdiIcon)`
 		}
 	`}
 `
+
+export default Icon

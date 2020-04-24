@@ -5,37 +5,41 @@ import orderBy from 'lodash/orderBy'
 
 import { NoteTitleTab } from 'elements/shared'
 
-export const TitleTabs = memo(
-	({ titleTabsData, currentNoteID, dispatchUpdateCurrentNoteID }) => {
-		const sortedtitleTabsData = orderBy(titleTabsData, 'sortIndex', 'asc')
+const TitleTabs = ({
+	titleTabsData,
+	currentNoteID,
+	dispatchUpdateCurrentNoteID,
+}) => {
+	const sortedtitleTabsData = orderBy(titleTabsData, 'sortIndex', 'asc')
 
-		return (
-			<div role="tablist">
-				{sortedtitleTabsData.map(({ id, title }) => {
-					const active = id === currentNoteID
+	return (
+		<div role="tablist">
+			{sortedtitleTabsData.map(({ id, title }) => {
+				const active = id === currentNoteID
 
-					return (
-						<NoteTitleTab
-							onClick={() =>
-								active || dispatchUpdateCurrentNoteID(id)
-							}
-							key={id}
-							active={active}
-							rounding="top"
-							role="tab"
-							data-testid="TitleTabs>NoteTitleTab"
-						>
-							{title}
-						</NoteTitleTab>
-					)
-				})}
-			</div>
-		)
-	}
-)
+				return (
+					<NoteTitleTab
+						onClick={() =>
+							active || dispatchUpdateCurrentNoteID(id)
+						}
+						key={id}
+						active={active}
+						rounding="top"
+						role="tab"
+						data-testid="TitleTabs>NoteTitleTab"
+					>
+						{title}
+					</NoteTitleTab>
+				)
+			})}
+		</div>
+	)
+}
 
 TitleTabs.propTypes = {
 	titleTabsData: PropTypes.array.isRequired,
 	currentNoteID: PropTypes.number.isRequired,
 	dispatchUpdateCurrentNoteID: PropTypes.func.isRequired,
 }
+
+export default memo(TitleTabs)

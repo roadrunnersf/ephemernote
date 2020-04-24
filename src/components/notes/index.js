@@ -1,3 +1,3 @@
-export { AddNoteInput } from './AddNoteInput'
-export { TitleTabs } from './TitleTabs'
-export { ActionButtons } from './ActionButtons'
+export { default as AddNoteInput } from './AddNoteInput'
+export { default as TitleTabs } from './TitleTabs'
+export { default as ActionButtons } from './ActionButtons'

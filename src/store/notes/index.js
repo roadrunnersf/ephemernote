@@ -6,7 +6,7 @@ import {
 	canCreateNote,
 	findNewCurrentNoteIdOnDelete,
 } from 'store/notes/utils'
-import { initialState } from './initialState'
+import initialState from './initialState'
 
 import {
 	UPDATE_CURRENT_NOTE_ID,
@@ -20,7 +20,7 @@ import {
 
 // reducer
 
-export const notesReducer = (state = initialState, action) => {
+const notesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case UPDATE_CURRENT_NOTE_TEXT:
 		case DELETE_CURRENT_NOTE:
@@ -124,3 +124,5 @@ function newNoteShape({ title, id, sortIndex }) {
 		font,
 	}
 }
+
+export default notesReducer

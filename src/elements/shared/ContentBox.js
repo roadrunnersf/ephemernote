@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ContentBox = styled.div`
+const ContentBox = styled.div`
 	display: flex;
 	justify-content: ${({ justifyContent }) => justifyContent || 'flex-start'};
 
@@ -8,3 +8,5 @@ export const ContentBox = styled.div`
 	align-items: center;
 	width: 100%;
 `
+
+export default ContentBox

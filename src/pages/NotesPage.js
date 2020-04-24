@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { TitleTabs, AddNoteInput, ActionButtons } from 'components/notes'
-import { TextArea } from 'elements/TextArea'
+import TextArea from 'elements/TextArea'
 import { PageContainer, ContentContainer, ContentBox } from 'elements/shared'
 
 import {
@@ -16,7 +16,7 @@ import { cycleThemeColor } from 'store/app'
 
 import { findNoteWithID } from 'utils'
 
-export const NotesPage = () => {
+const NotesPage = () => {
 	const textAreaRef = useRef()
 	const addNoteInputRef = useRef()
 
@@ -119,3 +119,5 @@ export const NotesPage = () => {
 		</PageContainer>
 	)
 }
+
+export default NotesPage

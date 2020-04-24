@@ -4,10 +4,10 @@ import { mount } from 'enzyme'
 import { ThemeProvider } from 'styled-components'
 import { Provider } from 'react-redux'
 
-import { store } from 'store'
-import { NotesPage } from './NotesPage'
+import store from 'store'
+import NotesPage from './NotesPage'
 import { themeColorSchemes } from 'theme'
-import { initialState as notesInitialState } from 'store/notes/initialState'
+import notesInitialState from 'store/notes/initialState'
 
 import { NoteTitleTab } from 'elements/shared'
 

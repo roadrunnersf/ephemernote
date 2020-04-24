@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { mount } from 'enzyme'
-import { TitleTabs } from './TitleTabs'
+import TitleTabs from './TitleTabs'
 
 const spyDispatchUpdateCurrentNoteID = jest.fn().mockName('mockedDispatch')
 

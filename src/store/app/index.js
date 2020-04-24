@@ -16,7 +16,7 @@ export const initialState = {
 	themeColor: 'mint',
 }
 
-export const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case CYCLE_THEME_COLOR:
 			return {
@@ -27,3 +27,5 @@ export const appReducer = (state = initialState, action) => {
 			return state
 	}
 }
+
+export default appReducer

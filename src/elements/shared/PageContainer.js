@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-export const PageContainer = styled.main`
+const PageContainer = styled.main`
 	display: flex;
 	justify-content: center;
 `
+
+export default PageContainer

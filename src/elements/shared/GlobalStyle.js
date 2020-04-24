@@ -3,7 +3,7 @@ import { layout } from 'theme'
 
 const { unit } = layout
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
 	body {
 		margin: 0px;
 		padding: 0px;
@@ -31,3 +31,5 @@ export const GlobalStyle = createGlobalStyle`
 		cursor: auto;
 	}
 `
+
+export default GlobalStyle

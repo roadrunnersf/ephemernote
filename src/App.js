@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux'
 
 import { themeColorSchemes } from 'theme'
 
-import { NotesPage } from 'pages/NotesPage'
+import NotesPage from 'pages/NotesPage'
 import { GlobalStyle } from 'elements/shared'
 
-export const App = () => {
+const App = () => {
 	const storeThemeColor = useSelector(state => state.app.themeColor)
 
 	const theme = themeColorSchemes[storeThemeColor]
@@ -31,3 +31,5 @@ export const App = () => {
 		</>
 	)
 }
+
+export default App

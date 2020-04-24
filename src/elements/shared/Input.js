@@ -4,7 +4,7 @@ import { outputBorderRadius, transitionProperty } from 'elements/cssHelpers'
 
 const { unit } = layout
 
-export const Input = styled.input`
+const Input = styled.input`
 	padding: ${unit}px;
 	${transitionProperty('background-color ')}
 
@@ -21,10 +21,5 @@ export const Input = styled.input`
 		${!show && 'opacity: 0;'}
 	`}
 `
-// ${({ hasContent, theme }) =>
-// 	hasContent &&
-// 	css`
-// 		:not(:focus) {
-// 			background-color: ${theme.tertiary};
-// 		}
-// 	`}
+
+export default Input

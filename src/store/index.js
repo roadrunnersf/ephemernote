@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux'
-import { appReducer } from 'store/app'
-import { notesReducer } from 'store/notes'
+import appReducer from 'store/app'
+import notesReducer from 'store/notes'
 import { loadState, saveState } from 'store/localStorage'
 
 import throttle from 'lodash/throttle'
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
 
 const persistedState = loadState()
 
-export const store = createStore(
+const store = createStore(
 	rootReducer,
 	persistedState,
 	window.__REDUX_DEVTOOLS_EXTENSION__?.()
@@ -27,3 +27,5 @@ store.subscribe(
 		saveState(currentStoreState)
 	}, 1500)
 )
+
+export default store

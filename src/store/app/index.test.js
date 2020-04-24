@@ -1,8 +1,7 @@
-import {
+import appReducer, {
 	initialState as state,
 	CYCLE_THEME_COLOR,
 	cycleThemeColor,
-	appReducer,
 } from 'store/app'
 import { calculateNextColor } from 'store/app/utils'
 
