@@ -70,6 +70,7 @@ const CustomBox = styled.div`
 	max-width: 300px;
 	flex: 1;
 	margin-bottom: ${layout.unit}px;
+	margin-right: auto;
 
 	${({ show }) => css`
 		${!show &&
