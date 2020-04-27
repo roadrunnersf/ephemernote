@@ -6,6 +6,7 @@ import { createNewNote, setAddNoteInputValue } from 'store/notes/actionCreators'
 
 import styled, { css } from 'styled-components'
 import { layout } from 'theme'
+import { MAX_TITLE_LENGTH } from 'globalConstants'
 
 const AddNoteInput = ({ textAreaRef }, ref) => {
 	const dispatch = useDispatch()
@@ -22,9 +23,19 @@ const AddNoteInput = ({ textAreaRef }, ref) => {
 
 	const dispatchSetAddNoteInputValue = useCallback(
 		event => {
-			dispatch(setAddNoteInputValue(event.target.value))
+			const { value } = event.target
+
+			if (value.length <= MAX_TITLE_LENGTH) {
+				dispatch(setAddNoteInputValue(value))
+			} else if (value.length > addNoteInputValue.length + 1) {
+				// if copy and pasting then truncate the pasted string
+				const newValue = value.slice(0, MAX_TITLE_LENGTH)
+				dispatch(setAddNoteInputValue(newValue))
+			} else {
+				return
+			}
 		},
-		[dispatch]
+		[dispatch, addNoteInputValue]
 	)
 
 	const hasContent = !!addNoteInputValue
