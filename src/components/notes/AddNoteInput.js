@@ -1,4 +1,4 @@
-import React, { memo, useCallback, forwardRef } from 'react'
+import React, { memo, forwardRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { Input, Button } from 'elements/shared'
@@ -16,27 +16,24 @@ const AddNoteInput = ({ textAreaRef }, ref) => {
 		state => state.notes.addNoteInputValue
 	)
 
-	const dispatchCreateNewNote = useCallback(() => {
+	const dispatchCreateNewNote = () => {
 		dispatch(createNewNote())
 		textAreaRef.current.focus()
-	}, [dispatch, textAreaRef])
+	}
 
-	const dispatchSetAddNoteInputValue = useCallback(
-		event => {
-			const { value } = event.target
+	const dispatchSetAddNoteInputValue = event => {
+		const { value } = event.target
 
-			if (value.length <= MAX_TITLE_LENGTH) {
-				dispatch(setAddNoteInputValue(value))
-			} else if (value.length > addNoteInputValue.length + 1) {
-				// if copy and pasting then truncate the pasted string
-				const newValue = value.slice(0, MAX_TITLE_LENGTH)
-				dispatch(setAddNoteInputValue(newValue))
-			} else {
-				return
-			}
-		},
-		[dispatch, addNoteInputValue]
-	)
+		if (value.length <= MAX_TITLE_LENGTH) {
+			dispatch(setAddNoteInputValue(value))
+		} else if (value.length > addNoteInputValue.length + 1) {
+			// if copy and pasting then truncate the pasted string
+			const newValue = value.slice(0, MAX_TITLE_LENGTH)
+			dispatch(setAddNoteInputValue(newValue))
+		} else {
+			return
+		}
+	}
 
 	const hasContent = !!addNoteInputValue
 
