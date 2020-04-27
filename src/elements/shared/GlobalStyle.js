@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
 		margin: 0px;
 		padding: 0px;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-		font-size: ${unit * 2.5}px;
+		font-size: ${unit * 2}px;
 		
 		line-height: 1.4;
 
