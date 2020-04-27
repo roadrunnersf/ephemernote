@@ -1,14 +1,16 @@
-export const minTitleLength = 1
-export const maxTitleLength = 15
-
-export const maxListLength = 5
+import {
+	MIN_TITLE_LENGTH,
+	MAX_TITLE_LENGTH,
+	MAX_NUMBER_OF_NOTES,
+} from 'globalConstants'
 
 export const canCreateNote = (notesData, newTitle) => {
 	const titleList = notesData.map(note => note.title)
 
 	const correctLength = () =>
-		newTitle.length >= minTitleLength && newTitle.length <= maxTitleLength
-	const notTooManyNotes = () => titleList.length < maxListLength
+		newTitle.length >= MIN_TITLE_LENGTH &&
+		newTitle.length <= MAX_TITLE_LENGTH
+	const notTooManyNotes = () => titleList.length < MAX_NUMBER_OF_NOTES
 	const newTitleDoesNotExist = () =>
 		!titleList.some(title => title === newTitle)
 
