@@ -1,12 +1,14 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const ContentBox = styled.div`
 	display: flex;
-	justify-content: ${({ justifyContent }) => justifyContent || 'flex-start'};
-
-	flex-direction: row;
 	align-items: center;
 	width: 100%;
+
+	${({ justifyContent, wrap }) => css`
+		justify-content: ${justifyContent || 'flex-start'};
+		flex-wrap: ${wrap ? 'wrap' : 'nowrap'};
+	`}
 `
 
 export default ContentBox

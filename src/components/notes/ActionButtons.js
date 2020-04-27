@@ -1,8 +1,7 @@
 import React, { memo } from 'react'
-
 import { mdiPlus, mdiTrashCanOutline, mdiPalette, mdiFormatFont } from '@mdi/js'
 
-import { Icon } from 'elements/shared'
+import { Icon, FlexBox } from 'elements/shared'
 
 const ActionButtons = ({
 	dispatchCycleThemeColor,
@@ -34,7 +33,7 @@ const ActionButtons = ({
 	]
 
 	return (
-		<>
+		<FlexBox>
 			{actionButtons.map(({ title, path, onClick }) => (
 				<Icon
 					path={path}
@@ -44,7 +43,7 @@ const ActionButtons = ({
 					key={title}
 				/>
 			))}
-		</>
+		</FlexBox>
 	)
 }
 

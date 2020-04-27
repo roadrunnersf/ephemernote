@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Input, Button } from 'elements/shared'
 import { createNewNote, setAddNoteInputValue } from 'store/notes/actionCreators'
 
-const AddNoteInput = forwardRef(({ textAreaRef }, ref) => {
+import styled, { css } from 'styled-components'
+import { layout } from 'theme'
+
+const AddNoteInput = ({ textAreaRef }, ref) => {
 	const dispatch = useDispatch()
 
 	const showAddNoteInput = useSelector(state => state.notes.showAddNoteInput)
@@ -34,7 +37,7 @@ const AddNoteInput = forwardRef(({ textAreaRef }, ref) => {
 	}
 
 	return (
-		<>
+		<CustomBox show={showAddNoteInput}>
 			<Input
 				show={showAddNoteInput}
 				type="text"
@@ -52,12 +55,29 @@ const AddNoteInput = forwardRef(({ textAreaRef }, ref) => {
 					onClick={dispatchCreateNewNote}
 					borderRadius="bottom"
 					variant={'tertiary'}
+					style={{ marginRight: 8 }}
 				>
-					Add Note
+					Add
 				</Button>
 			)}
-		</>
+		</CustomBox>
 	)
-})
+}
 
-export default memo(AddNoteInput)
+const CustomBox = styled.div`
+	display: flex;
+	min-width: 200px;
+	max-width: 300px;
+	flex: 1;
+	margin-bottom: ${layout.unit}px;
+
+	${({ show }) => css`
+		${!show &&
+		css`
+			min-width: 0px;
+			max-width: 0px;
+		`}
+	`}
+`
+
+export default memo(forwardRef(AddNoteInput))

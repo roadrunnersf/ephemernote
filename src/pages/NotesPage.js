@@ -92,28 +92,22 @@ const NotesPage = () => {
 						data-testid="NotesPage>TextArea"
 					/>
 				</ContentBox>
-				<ContentBox justifyContent="space-between">
-					<div>
-						<AddNoteInput
-							textAreaRef={textAreaRef}
-							ref={addNoteInputRef}
-						/>
-					</div>
-					<div>
-						<ActionButtons
-							dispatchDeleteCurrentNote={
-								dispatchDeleteCurrentNote
-							}
-							dispatchToggleShowAddNoteInput={
-								dispatchToggleShowAddNoteInput
-							}
-							dispatchCycleThemeColor={dispatchCycleThemeColor}
-							dispatchCycleCurrentNoteFontFamily={
-								dispatchCycleCurrentNoteFontFamily
-							}
-							data-testid="NotesPage>ActionButtons"
-						/>
-					</div>
+				<ContentBox justifyContent="space-between" wrap>
+					<AddNoteInput
+						textAreaRef={textAreaRef}
+						ref={addNoteInputRef}
+					/>
+					<ActionButtons
+						dispatchDeleteCurrentNote={dispatchDeleteCurrentNote}
+						dispatchToggleShowAddNoteInput={
+							dispatchToggleShowAddNoteInput
+						}
+						dispatchCycleThemeColor={dispatchCycleThemeColor}
+						dispatchCycleCurrentNoteFontFamily={
+							dispatchCycleCurrentNoteFontFamily
+						}
+						data-testid="NotesPage>ActionButtons"
+					/>
 				</ContentBox>
 			</ContentContainer>
 		</PageContainer>
