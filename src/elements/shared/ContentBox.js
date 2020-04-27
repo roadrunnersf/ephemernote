@@ -5,9 +5,9 @@ const ContentBox = styled.div`
 	align-items: center;
 	width: 100%;
 
-	${({ justifyContent, wrap }) => css`
+	${({ justifyContent, flexWrap }) => css`
 		justify-content: ${justifyContent || 'flex-start'};
-		flex-wrap: ${wrap ? 'wrap' : 'nowrap'};
+		flex-wrap: ${flexWrap ? 'wrap' : 'nowrap'};
 	`}
 `
 

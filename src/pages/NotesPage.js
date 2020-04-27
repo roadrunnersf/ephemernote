@@ -92,7 +92,7 @@ const NotesPage = () => {
 						data-testid="NotesPage>TextArea"
 					/>
 				</ContentBox>
-				<ContentBox justifyContent="center" wrap>
+				<ContentBox justifyContent="center" flexWrap>
 					<AddNoteInput
 						textAreaRef={textAreaRef}
 						ref={addNoteInputRef}
