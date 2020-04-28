@@ -24,6 +24,7 @@ const Input = styled.input`
 		${
 			!show &&
 			css`
+				opacity: 0;
 				min-width: 0px;
 				max-width: 0px;
 			`
