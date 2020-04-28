@@ -13,7 +13,7 @@ export const cycleThemeColor = () => ({
 // reducer
 
 export const initialState = {
-	themeColor: 'mint',
+	themeColor: 'seascape',
 }
 
 const appReducer = (state = initialState, action) => {
