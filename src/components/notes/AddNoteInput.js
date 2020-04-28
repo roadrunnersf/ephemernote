@@ -58,16 +58,15 @@ const AddNoteInput = ({ textAreaRef }, ref) => {
 				autoComplete="off"
 				ref={ref}
 			/>
-			{hasContent && showAddNoteInput && (
-				<Button
-					onClick={dispatchCreateNewNote}
-					borderRadius="bottom"
-					variant={'tertiary'}
-					style={{ marginRight: 8 }}
-				>
-					Add
-				</Button>
-			)}
+			<Button
+				show={hasContent && showAddNoteInput}
+				onClick={dispatchCreateNewNote}
+				borderRadius="bottom"
+				variant={'tertiary'}
+				style={{ marginRight: 8 }}
+			>
+				Add
+			</Button>
 		</CustomBox>
 	)
 }

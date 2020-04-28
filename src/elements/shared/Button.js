@@ -7,9 +7,10 @@ const { unit } = layout
 const Button = styled.button`
 	padding: ${unit}px;
 
-	${({ borderRadius, theme, variant = 'secondary' }) => css`
+	${({ borderRadius, theme, show, variant = 'secondary' }) => css`
 		${outputBorderRadius(borderRadius)}
-
+		${!show && 'opacity: 0;'}
+		
 		background-color: ${theme[variant]}
 	`}
 `
