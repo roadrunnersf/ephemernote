@@ -1,5 +1,9 @@
 import React, { memo } from 'react'
-import { mdiPlus, mdiTrashCanOutline, mdiPalette, mdiFormatFont } from '@mdi/js'
+
+import Plus from 'mdi-react/PlusIcon'
+import TrashCanOutline from 'mdi-react/TrashCanOutlineIcon'
+import Palette from 'mdi-react/PaletteIcon'
+import FormatFont from 'mdi-react/FormatFontIcon'
 
 import { Icon, FlexBox } from 'elements/shared'
 
@@ -12,34 +16,34 @@ const ActionButtons = ({
 	const actionButtons = [
 		{
 			title: 'Add note',
-			path: mdiPlus,
+			component: Plus,
 			onClick: dispatchToggleShowAddNoteInput,
 		},
 		{
 			title: 'Delete current note',
-			path: mdiTrashCanOutline,
+			component: TrashCanOutline,
 			onClick: dispatchDeleteCurrentNote,
 		},
 		{
 			title: 'Change current note font',
-			path: mdiFormatFont,
+			component: FormatFont,
 			onClick: dispatchCycleCurrentNoteFontFamily,
 		},
 		{
 			title: 'Change theme',
-			path: mdiPalette,
+			component: Palette,
 			onClick: dispatchCycleThemeColor,
 		},
 	]
 
 	return (
 		<FlexBox>
-			{actionButtons.map(({ title, path, onClick }) => (
+			{actionButtons.map(({ title, component, onClick }) => (
 				<Icon
-					path={path}
+					as={component}
 					title={title}
 					onClick={onClick}
-					size={1.2}
+					size={24}
 					key={title}
 				/>
 			))}
