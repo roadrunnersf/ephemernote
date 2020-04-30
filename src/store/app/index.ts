@@ -1,12 +1,9 @@
 import { calculateNextColor } from 'store/app/utils'
-
-// actions
-
-export const CYCLE_THEME_COLOR = 'Cycle theme color'
+import { AppState, AppActionTypes, CYCLE_THEME_COLOR } from './types'
 
 //action creators
 
-export const cycleThemeColor = () => ({
+export const cycleThemeColor = (): AppActionTypes => ({
 	type: CYCLE_THEME_COLOR,
 })
 
@@ -16,7 +13,7 @@ export const initialState = {
 	themeColor: 'seascape',
 }
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: AppActionTypes): AppState => {
 	switch (action.type) {
 		case CYCLE_THEME_COLOR:
 			return {

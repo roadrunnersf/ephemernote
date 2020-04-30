@@ -1,8 +1,5 @@
-import appReducer, {
-	initialState as state,
-	CYCLE_THEME_COLOR,
-	cycleThemeColor,
-} from 'store/app'
+import appReducer, { initialState as state, cycleThemeColor } from 'store/app'
+import { CYCLE_THEME_COLOR } from 'store/app/types'
 import { calculateNextColor } from 'store/app/utils'
 
 describe('store/app', () => {
