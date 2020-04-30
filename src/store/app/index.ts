@@ -9,7 +9,7 @@ export const cycleThemeColor = (): AppActionTypes => ({
 
 // reducer
 
-export const initialState = {
+export const initialState: AppState = {
 	themeColor: 'seascape',
 }
 

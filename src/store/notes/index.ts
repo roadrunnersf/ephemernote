@@ -8,6 +8,7 @@ import {
 } from 'store/notes/utils'
 import initialState from './initialState'
 
+import { NotesState } from 'store/notes/actionsAndTypes'
 import {
 	Note,
 	NotesActionTypes,
@@ -22,7 +23,10 @@ import {
 
 // reducer
 
-const notesReducer = (state = initialState, action: NotesActionTypes) => {
+const notesReducer = (
+	state = initialState,
+	action: NotesActionTypes
+): NotesState => {
 	switch (action.type) {
 		case UPDATE_CURRENT_NOTE_TEXT:
 		case DELETE_CURRENT_NOTE:
