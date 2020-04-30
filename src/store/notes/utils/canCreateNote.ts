@@ -1,10 +1,11 @@
+import { NotesData } from 'store/notes/actionsAndTypes'
 import {
 	MIN_TITLE_LENGTH,
 	MAX_TITLE_LENGTH,
 	MAX_NUMBER_OF_NOTES,
 } from 'globalConstants'
 
-export const canCreateNote = (notesData, newTitle) => {
+export const canCreateNote = (notesData: NotesData, newTitle: string) => {
 	const titleList = notesData.map(note => note.title)
 
 	const correctLength = () =>

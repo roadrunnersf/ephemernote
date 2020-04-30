@@ -1,4 +1,6 @@
-export const findNewNoteID = notesData => {
+import { NotesData } from 'store/notes/actionsAndTypes'
+
+export const findNewNoteID = (notesData: NotesData) => {
 	if (notesData.length === 0) {
 		return 0
 	}

@@ -1,4 +1,6 @@
-const initialState = {
+import { NotesState } from 'store/notes/actionsAndTypes'
+
+const initialState: NotesState = {
 	currentNoteID: 0,
 	data: [
 		{

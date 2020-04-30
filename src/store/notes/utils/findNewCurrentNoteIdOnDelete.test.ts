@@ -1,6 +1,15 @@
 import { findNewCurrentNoteIdOnDelete } from './findNewCurrentNoteIdOnDelete'
 
-const notesMock = [{ id: 111 }, { id: 222 }, { id: 333 }]
+const createMockNotesDataFromArray = (idArray: number[]) =>
+	idArray.map((id, index) => ({
+		id,
+		title: 'a title',
+		text: 'some text',
+		fontFamily: null,
+		sortIndex: index,
+	}))
+
+const notesMock = createMockNotesDataFromArray([111, 222, 333])
 
 describe('findNewCurrentNoteIdOnDelete', () => {
 	describe('returns...', () => {

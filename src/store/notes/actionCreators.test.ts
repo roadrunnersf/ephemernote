@@ -6,7 +6,7 @@ import {
 	DELETE_CURRENT_NOTE,
 	SET_ADD_NOTE_INPUT_VALUE,
 	TOGGLE_SHOW_ADD_NOTE_INPUT,
-} from 'store/notes/actions'
+} from 'store/notes/actionsAndTypes'
 
 import {
 	updateCurrentNoteID,

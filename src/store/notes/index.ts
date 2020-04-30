@@ -9,6 +9,8 @@ import {
 import initialState from './initialState'
 
 import {
+	Note,
+	NotesActionTypes,
 	UPDATE_CURRENT_NOTE_ID,
 	UPDATE_CURRENT_NOTE_TEXT,
 	CYCLE_CURRENT_NOTE_FONT_FAMILY,
@@ -16,11 +18,11 @@ import {
 	DELETE_CURRENT_NOTE,
 	SET_ADD_NOTE_INPUT_VALUE,
 	TOGGLE_SHOW_ADD_NOTE_INPUT,
-} from 'store/notes/actions'
+} from 'store/notes/actionsAndTypes'
 
 // reducer
 
-const notesReducer = (state = initialState, action) => {
+const notesReducer = (state = initialState, action: NotesActionTypes) => {
 	switch (action.type) {
 		case UPDATE_CURRENT_NOTE_TEXT:
 		case DELETE_CURRENT_NOTE:
@@ -115,7 +117,15 @@ const notesReducer = (state = initialState, action) => {
 const text = ''
 const fontFamily = null
 
-function newNoteShape({ title, id, sortIndex }) {
+function newNoteShape({
+	title,
+	id,
+	sortIndex,
+}: {
+	title: string
+	id: number
+	sortIndex: number
+}): Note {
 	return {
 		id,
 		title,
