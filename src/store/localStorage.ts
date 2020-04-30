@@ -1,3 +1,11 @@
+import { NotesState } from 'store/notes/actionsAndTypes'
+import { AppState } from 'store/app/types'
+
+type CombinedState = {
+	app: AppState
+	notes: NotesState
+}
+
 export const loadState = () => {
 	try {
 		const serializedState = localStorage.getItem('state')
@@ -11,7 +19,7 @@ export const loadState = () => {
 	}
 }
 
-export const saveState = state => {
+export const saveState = (state: CombinedState) => {
 	try {
 		const serializedState = JSON.stringify(state)
 		localStorage.setItem('state', serializedState)
