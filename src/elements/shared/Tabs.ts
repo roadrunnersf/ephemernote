@@ -5,7 +5,11 @@ import { transitionProperty } from 'elements/cssHelpers'
 
 const { borderRadiusPx: bR, unit } = layout
 
-const Tab = styled.button`
+type TabProps = {
+	rounding: string
+}
+
+const Tab = styled.button<TabProps>`
 	${transitionProperty('background-color')}
 	padding: ${unit * 0.75}px ${unit}px;
 	border-radius: ${bR};
@@ -17,7 +21,12 @@ const Tab = styled.button`
 		`}
 `
 
-const NoteTitleTab = styled(Tab)`
+type NoteTitleTabProps = {
+	active: boolean
+	'data-testid': string
+}
+
+const NoteTitleTab = styled(Tab)<NoteTitleTabProps>`
 	${({ active, theme }) =>
 		css`
 			${active
