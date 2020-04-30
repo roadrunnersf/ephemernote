@@ -1,6 +1,6 @@
 import { themeColorSchemes } from 'theme'
 
-export const calculateNextColor = currentColor => {
+export const calculateNextColor = (currentColor: string) => {
 	const colorNames = Object.keys(themeColorSchemes)
 
 	const indexOfCurrentColor = colorNames.indexOf(currentColor)
