@@ -5,17 +5,34 @@ import orderBy from 'lodash/orderBy'
 
 import { NoteTitleTab } from 'elements/shared'
 
+type NoteProps = {
+	id: number
+	title: string
+	text: string
+	fontFamily: string | null
+}
+
+type TitleTabsProps = {
+	titleTabsData: Array<NoteProps>
+	currentNoteID: number
+	dispatchUpdateCurrentNoteID: Function
+}
+
 const TitleTabs = ({
 	titleTabsData,
 	currentNoteID,
 	dispatchUpdateCurrentNoteID,
-}) => {
-	const sortedtitleTabsData = orderBy(titleTabsData, 'sortIndex', 'asc')
+}: TitleTabsProps) => {
+	const sortedtitleTabsData: Array<NoteProps> = orderBy(
+		titleTabsData,
+		'sortIndex',
+		'asc'
+	)
 
 	return (
 		<div role="tablist">
 			{sortedtitleTabsData.map(({ id, title }) => {
-				const active = id === currentNoteID
+				const active: boolean = id === currentNoteID
 
 				return (
 					<NoteTitleTab
