@@ -113,7 +113,7 @@ const notesReducer = (state = initialState, action) => {
 // templates
 
 const text = ''
-const font = null
+const fontFamily = null
 
 function newNoteShape({ title, id, sortIndex }) {
 	return {
@@ -121,7 +121,7 @@ function newNoteShape({ title, id, sortIndex }) {
 		title,
 		sortIndex,
 		text,
-		font,
+		fontFamily,
 	}
 }
 
