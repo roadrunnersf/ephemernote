@@ -1,9 +1,19 @@
 import { createStore, combineReducers, compose } from 'redux'
+import throttle from 'lodash/throttle'
+
 import appReducer from 'store/app'
 import notesReducer from 'store/notes'
 import { loadState, saveState } from 'store/localStorage'
 
-import throttle from 'lodash/throttle'
+import { NotesState } from 'store/notes/actionsAndTypes'
+import { AppState } from 'store/app/types'
+
+declare global {
+	type State = {
+		app: AppState
+		notes: NotesState
+	}
+}
 
 declare global {
 	interface Window {
