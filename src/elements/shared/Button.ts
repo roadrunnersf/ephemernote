@@ -1,10 +1,16 @@
 import styled, { css } from 'styled-components'
 import { layout } from 'theme'
-import { outputBorderRadius } from 'elements/cssHelpers'
+import { outputBorderRadius, BorderSide } from 'elements/cssHelpers'
 
 const { unit } = layout
 
-const Button = styled.button`
+type ButtonProps = {
+	borderRadius: BorderSide
+	show: boolean
+	variant: 'primary' | 'secondary' | 'text' | 'background' | 'tertiary'
+}
+
+const Button = styled.button<ButtonProps>`
 	padding: ${unit}px;
 
 	${({ borderRadius, theme, show, variant = 'secondary' }) => css`

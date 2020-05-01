@@ -3,9 +3,9 @@ import { layout } from 'theme'
 
 const { borderRadiusPx: bR, transitionTime } = layout
 
-export const outputBorderRadius = (
-	side: 'top' | 'right' | 'bottom' | 'left'
-) => {
+export type BorderSide = 'top' | 'right' | 'bottom' | 'left'
+
+export const outputBorderRadius = (side: BorderSide) => {
 	switch (side) {
 		case 'top':
 			return `border-radius: ${bR} ${bR} 0 0;`
