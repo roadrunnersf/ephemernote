@@ -1,4 +1,16 @@
-export const themeColorSchemes = {
+type ThemeColorScheme = {
+	primary: string
+	secondary: string
+	text: string
+	background: string
+	tertiary: string
+}
+
+type ThemeColorSchemes = {
+	[colorSchemeName: string]: ThemeColorScheme
+}
+
+export const themeColorSchemes: ThemeColorSchemes = {
 	mint: {
 		primary: 'rgb(176,216,197)',
 		secondary: 'rgb(218,235,219)',
