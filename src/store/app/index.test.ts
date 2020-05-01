@@ -13,10 +13,6 @@ describe('store/app', () => {
 	})
 
 	describe('appReducer', () => {
-		it('should return the initial state', () => {
-			expect(appReducer(state, {})).toEqual(state)
-			expect(appReducer(undefined, {})).toEqual(state)
-		})
 		it('should handle CYCLE_THEME_COLOR', () => {
 			const expectedState = {
 				...state,
