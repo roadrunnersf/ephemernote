@@ -4,7 +4,12 @@ import { transitionProperty } from 'elements/cssHelpers'
 
 const { borderRadiusPx: bR, unit } = layout
 
-const TextArea = styled.textarea`
+type TextAreaProps = {
+	fontFamily?: 'Monospace'
+	roundBottomLeftCorner?: boolean
+}
+
+const TextArea = styled.textarea<TextAreaProps>`
 	border-radius: 0 ${bR} ${bR} 0;
 	resize: none;
 	width: 100%;
