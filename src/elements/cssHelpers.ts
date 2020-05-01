@@ -3,7 +3,9 @@ import { layout } from 'theme'
 
 const { borderRadiusPx: bR, transitionTime } = layout
 
-export const outputBorderRadius = side => {
+export const outputBorderRadius = (
+	side: 'top' | 'right' | 'bottom' | 'left'
+) => {
 	switch (side) {
 		case 'top':
 			return `border-radius: ${bR} ${bR} 0 0;`
@@ -18,7 +20,10 @@ export const outputBorderRadius = side => {
 	}
 }
 
-export const transitionProperty = (property, inputTime = transitionTime) => css`
+export const transitionProperty = (
+	property: string,
+	inputTime = transitionTime
+) => css`
 	-webkit-transition: ${property} ${inputTime};
 	-moz-transition: ${property} ${inputTime};
 	-o-transition: ${property} ${inputTime};
