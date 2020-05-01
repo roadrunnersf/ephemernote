@@ -1,9 +1,15 @@
+import 'styled-components'
+
 type ThemeColorScheme = {
 	primary: string
 	secondary: string
 	text: string
 	background: string
 	tertiary: string
+}
+
+declare module 'styled-components' {
+	export interface DefaultTheme extends ThemeColorScheme {}
 }
 
 type ThemeColorSchemes = {
