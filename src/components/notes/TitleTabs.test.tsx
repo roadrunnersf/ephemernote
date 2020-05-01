@@ -1,4 +1,5 @@
 import React from 'react'
+import { ReactWrapper } from 'enzyme'
 
 import { mount } from 'enzyme'
 import TitleTabs from './TitleTabs'
@@ -17,7 +18,7 @@ const mockProps = {
 
 const { titleTabsData } = mockProps
 
-const findNoteTitleTab = wrapper =>
+const findNoteTitleTab = (wrapper: ReactWrapper) =>
 	wrapper.find('[data-testid="TitleTabs>NoteTitleTab"]').hostNodes()
 
 describe('TitleTabs', () => {

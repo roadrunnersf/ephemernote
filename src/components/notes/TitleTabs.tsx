@@ -5,15 +5,14 @@ import orderBy from 'lodash/orderBy'
 
 import { NoteTitleTab } from 'elements/shared'
 
-type NoteProps = {
-	id: number
+type TitleTabObjProps = {
 	title: string
-	text: string
-	fontFamily: string | null
+	id: number
+	sortIndex: number
 }
 
 type TitleTabsProps = {
-	titleTabsData: Array<NoteProps>
+	titleTabsData: Array<TitleTabObjProps>
 	currentNoteID: number
 	dispatchUpdateCurrentNoteID: Function
 }
@@ -23,11 +22,12 @@ const TitleTabs = ({
 	currentNoteID,
 	dispatchUpdateCurrentNoteID,
 }: TitleTabsProps) => {
-	const sortedtitleTabsData: Array<NoteProps> = orderBy(
+	const sortedtitleTabsData: Array<TitleTabObjProps> = orderBy(
 		titleTabsData,
 		'sortIndex',
 		'asc'
 	)
+	console.log('TCL: sortedtitleTabsData', sortedtitleTabsData)
 
 	return (
 		<div role="tablist">
