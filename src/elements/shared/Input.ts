@@ -1,10 +1,19 @@
 import styled, { css } from 'styled-components'
 import { layout } from 'theme'
-import { outputBorderRadius, transitionProperty } from 'elements/cssHelpers'
+import {
+	outputBorderRadius,
+	transitionProperty,
+	BorderSide,
+} from 'elements/cssHelpers'
 
 const { unit } = layout
 
-const Input = styled.input`
+type InputProps = {
+	borderRadius: BorderSide
+	show: boolean
+}
+
+const Input = styled.input<InputProps>`
 	box-sizing: border-box;
 	padding: ${unit}px;
 	${transitionProperty('background-color ')}
