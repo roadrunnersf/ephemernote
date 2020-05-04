@@ -27,7 +27,6 @@ const TitleTabs = ({
 		'sortIndex',
 		'asc'
 	)
-	console.log('TCL: sortedtitleTabsData', sortedtitleTabsData)
 
 	return (
 		<div role="tablist">
