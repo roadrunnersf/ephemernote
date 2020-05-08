@@ -22,9 +22,9 @@ const Input = styled.input<InputProps>`
 
 	${({ theme, borderRadius, show = true }) => css`
 		${outputBorderRadius(borderRadius)}
-		background-color: ${theme.secondary};
+		background-color: ${theme.primary};
 		:focus {
-			background-color: ${theme.primary};
+			background-color: ${theme.secondary};
 		}
 		::placeholder {
 			color: ${theme.text};
