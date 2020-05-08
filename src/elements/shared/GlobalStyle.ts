@@ -16,12 +16,14 @@ const GlobalStyle = createGlobalStyle`
 		color: ${p => p.theme.text};
 	}
 	button, textarea, input {
+		box-sizing: border-box;
 		color: inherit;
 		font: inherit;
 		font-size: inherit;
 		font-stretch: normal;
 		border: none;
 		box-shadow: none;
+		margin: 0px;
 		:focus {
 			outline: 0;
 		}
