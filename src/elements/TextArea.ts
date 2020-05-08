@@ -17,6 +17,8 @@ const TextArea = styled.textarea<TextAreaProps>`
 	border: none;
 	padding: ${unit * 2}px;
 	margin: 0px;
+	height: calc(100vh - 190px);
+	max-height: 800px;
 
 	${transitionProperty('background-color')}
 
