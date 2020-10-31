@@ -5,8 +5,8 @@ import appSlice from 'store/app'
 import notesReducer from 'store/notes'
 import { loadState, saveState } from 'store/localStorage'
 
-import { NotesState } from 'store/notes/actionsAndTypes'
 import { AppState } from './app/index.d'
+import { NotesState } from './notes/index.d'
 
 declare global {
 	type State = {

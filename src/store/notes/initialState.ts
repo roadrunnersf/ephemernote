@@ -1,4 +1,4 @@
-import { NotesState } from 'store/notes/actionsAndTypes'
+import { NotesState } from 'store/notes/index.d'
 
 const initialState: NotesState = {
 	currentNoteID: 0,

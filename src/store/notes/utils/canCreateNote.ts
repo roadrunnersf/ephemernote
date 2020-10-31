@@ -1,4 +1,4 @@
-import { NotesData } from 'store/notes/actionsAndTypes'
+import { NotesData } from 'store/notes/index.d'
 import {
 	MIN_TITLE_LENGTH,
 	MAX_TITLE_LENGTH,

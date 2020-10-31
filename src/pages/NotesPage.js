@@ -11,7 +11,7 @@ import {
 	toggleShowAddNoteInput,
 	deleteCurrentNote,
 	cycleCurrentNoteFontFamily,
-} from 'store/notes/actionCreators'
+} from 'store/notes'
 import { cycleThemeColor } from 'store/app'
 
 import { findNoteWithID } from 'utils'

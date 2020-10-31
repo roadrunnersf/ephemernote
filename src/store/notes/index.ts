@@ -1,6 +1,6 @@
-import produce from 'immer'
+import { createSlice } from '@reduxjs/toolkit'
 
-import { findIndexOfNoteWithID } from 'utils'
+import { findIndexOfNoteWithIDFromState } from 'utils'
 import {
 	findNewNoteID,
 	canCreateNote,
@@ -8,72 +8,43 @@ import {
 } from 'store/notes/utils'
 import initialState from './initialState'
 
-import { NotesState } from 'store/notes/actionsAndTypes'
-import {
-	Note,
-	NotesActionTypes,
-	UPDATE_CURRENT_NOTE_ID,
-	UPDATE_CURRENT_NOTE_TEXT,
-	CYCLE_CURRENT_NOTE_FONT_FAMILY,
-	CREATE_NEW_NOTE,
-	DELETE_CURRENT_NOTE,
-	SET_ADD_NOTE_INPUT_VALUE,
-	TOGGLE_SHOW_ADD_NOTE_INPUT,
-	CLOSE_ADD_NOTE_INPUT,
-} from 'store/notes/actionsAndTypes'
+import { Note } from 'store/notes/index.d'
 
 // reducer
 
-const notesReducer = (
-	state = initialState,
-	action: NotesActionTypes
-): NotesState => {
-	switch (action.type) {
-		case UPDATE_CURRENT_NOTE_TEXT:
-		case DELETE_CURRENT_NOTE:
-		case CYCLE_CURRENT_NOTE_FONT_FAMILY:
-			const indexOfCurrentNote = findIndexOfNoteWithID(
-				state.data,
-				state.currentNoteID
-			)
-			// eslint-disable-next-line default-case
-			switch (action.type) {
-				case UPDATE_CURRENT_NOTE_TEXT:
-					return produce(state, draft => {
-						draft.data[indexOfCurrentNote].text = action.text
-					})
-				case DELETE_CURRENT_NOTE:
-					if (state.data.length > 1) {
-						return produce(state, draft => {
-							draft.currentNoteID = findNewCurrentNoteIdOnDelete(
-								state.data,
-								indexOfCurrentNote
-							)
-							draft.data.splice(indexOfCurrentNote, 1)
-						})
-					} else {
-						return state
-					}
-				case CYCLE_CURRENT_NOTE_FONT_FAMILY:
-					return produce(state, draft => {
-						const currentNoteFontFamily =
-							draft.data[indexOfCurrentNote].fontFamily
-						const newFont = currentNoteFontFamily
-							? null
-							: 'Monospace'
+const notesSlice = createSlice({
+	name: 'notes',
+	initialState,
+	reducers: {
+		updateCurrentNoteID(state, { payload }) {
+			state.currentNoteID = payload
+		},
+		updateCurrentNoteText(state, { payload }) {
+			const indexOfCurrentNote = findIndexOfNoteWithIDFromState(state)
 
-						draft.data[indexOfCurrentNote].fontFamily = newFont
-					})
+			state.data[indexOfCurrentNote].text = payload
+		},
+		deleteCurrentNote(state) {
+			if (state.data.length > 1) {
+				const indexOfCurrentNote = findIndexOfNoteWithIDFromState(state)
+
+				state.currentNoteID = findNewCurrentNoteIdOnDelete(
+					state.data,
+					indexOfCurrentNote
+				)
+				state.data.splice(indexOfCurrentNote, 1)
 			}
-			break
+		},
+		cycleCurrentNoteFontFamily(state) {
+			const indexOfCurrentNote = findIndexOfNoteWithIDFromState(state)
 
-		case UPDATE_CURRENT_NOTE_ID:
-			return {
-				...state,
-				currentNoteID: action.id,
-			}
+			const currentNoteFontFamily =
+				state.data[indexOfCurrentNote].fontFamily
+			const newFont = currentNoteFontFamily ? null : 'Monospace'
 
-		case CREATE_NEW_NOTE:
+			state.data[indexOfCurrentNote].fontFamily = newFont
+		},
+		createNewNote(state) {
 			const notesData = state.data
 			const newTitle = state.addNoteInputValue
 			const notesSortIndexList = notesData.map(
@@ -87,43 +58,29 @@ const notesReducer = (
 			const newNoteID = findNewNoteID(notesData)
 			const newNoteSortIndex = Math.max(...notesSortIndexList) + 1
 
-			return produce(state, draft => {
-				draft.data.push(
-					newNoteShape({
-						title: newTitle,
-						id: newNoteID,
-						sortIndex: newNoteSortIndex,
-					})
-				)
-				draft.currentNoteID = newNoteID
-				draft.showAddNoteInput = false
-				draft.addNoteInputValue = ''
-			})
+			notesData.push(
+				newNoteShape({
+					title: newTitle,
+					id: newNoteID,
+					sortIndex: newNoteSortIndex,
+				})
+			)
 
-		case SET_ADD_NOTE_INPUT_VALUE:
-			return {
-				...state,
-				addNoteInputValue: action.newString,
-			}
-
-		case TOGGLE_SHOW_ADD_NOTE_INPUT:
-			return {
-				...state,
-				showAddNoteInput: !state.showAddNoteInput,
-			}
-
-		case CLOSE_ADD_NOTE_INPUT:
-			return {
-				...state,
-				showAddNoteInput: false,
-			}
-
-		default:
-			return state
-	}
-}
-
-// templates
+			state.currentNoteID = newNoteID
+			state.showAddNoteInput = false
+			state.addNoteInputValue = ''
+		},
+		setAddNoteInputValue(state, { payload }) {
+			state.addNoteInputValue = payload
+		},
+		toggleShowAddNoteInput(state, { payload }) {
+			state.showAddNoteInput = !state.showAddNoteInput
+		},
+		closeAddNoteInput(state, { payload }) {
+			state.showAddNoteInput = false
+		},
+	},
+})
 
 const text = ''
 const fontFamily = null
@@ -144,6 +101,31 @@ function newNoteShape({
 		text,
 		fontFamily,
 	}
+}
+
+const {
+	reducer: notesReducer,
+	actions: {
+		closeAddNoteInput,
+		createNewNote,
+		cycleCurrentNoteFontFamily,
+		deleteCurrentNote,
+		setAddNoteInputValue,
+		toggleShowAddNoteInput,
+		updateCurrentNoteID,
+		updateCurrentNoteText,
+	},
+} = notesSlice
+
+export {
+	closeAddNoteInput,
+	createNewNote,
+	cycleCurrentNoteFontFamily,
+	deleteCurrentNote,
+	setAddNoteInputValue,
+	toggleShowAddNoteInput,
+	updateCurrentNoteID,
+	updateCurrentNoteText,
 }
 
 export default notesReducer

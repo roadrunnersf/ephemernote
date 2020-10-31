@@ -1,4 +1,4 @@
-import { NotesData } from 'store/notes/actionsAndTypes'
+import { NotesData } from 'store/notes/index.d'
 
 export const findNewCurrentNoteIdOnDelete = (
 	notesData: NotesData,

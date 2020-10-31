@@ -6,7 +6,7 @@ import {
 	createNewNote,
 	setAddNoteInputValue,
 	closeAddNoteInput,
-} from 'store/notes/actionCreators'
+} from 'store/notes'
 
 import styled, { css } from 'styled-components'
 import { layout } from 'theme'

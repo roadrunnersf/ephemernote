@@ -1,25 +1,19 @@
-import appReducer, { initialState as state, cycleThemeColor } from 'store/app'
-import { CYCLE_THEME_COLOR } from 'store/app/types'
+import appSlice, { initialState, cycleThemeColor } from 'store/app'
 import { calculateNextColor } from 'store/app/utils'
 
-describe('store/app', () => {
-	describe('actionCreators', () => {
-		describe('cycleThemeColor', () => {
-			it('should create an action to cycle the theme color', () => {
-				const expectedAction = { type: CYCLE_THEME_COLOR }
-				expect(cycleThemeColor()).toEqual(expectedAction)
-			})
-		})
-	})
+const { reducer } = appSlice
 
+describe('store/app', () => {
 	describe('appReducer', () => {
 		it('should handle CYCLE_THEME_COLOR', () => {
 			const expectedState = {
-				...state,
-				themeColor: calculateNextColor(state.themeColor),
+				...initialState,
+				themeColor: calculateNextColor(initialState.themeColor),
 			}
 
-			expect(appReducer(state, cycleThemeColor())).toEqual(expectedState)
+			expect(reducer(initialState, cycleThemeColor())).toEqual(
+				expectedState
+			)
 		})
 	})
 })
