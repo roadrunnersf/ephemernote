@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { findIndexOfNoteWithIDFromState } from 'utils'
 import {
@@ -10,16 +10,14 @@ import initialState from './initialState'
 
 import { Note } from 'store/notes/index.d'
 
-// reducer
-
 const notesSlice = createSlice({
 	name: 'notes',
 	initialState,
 	reducers: {
-		updateCurrentNoteID(state, { payload }) {
+		updateCurrentNoteID(state, { payload }: PayloadAction<number>) {
 			state.currentNoteID = payload
 		},
-		updateCurrentNoteText(state, { payload }) {
+		updateCurrentNoteText(state, { payload }: PayloadAction<string>) {
 			const indexOfCurrentNote = findIndexOfNoteWithIDFromState(state)
 
 			state.data[indexOfCurrentNote].text = payload
@@ -70,13 +68,13 @@ const notesSlice = createSlice({
 			state.showAddNoteInput = false
 			state.addNoteInputValue = ''
 		},
-		setAddNoteInputValue(state, { payload }) {
+		setAddNoteInputValue(state, { payload }: PayloadAction<string>) {
 			state.addNoteInputValue = payload
 		},
-		toggleShowAddNoteInput(state, { payload }) {
+		toggleShowAddNoteInput(state) {
 			state.showAddNoteInput = !state.showAddNoteInput
 		},
-		closeAddNoteInput(state, { payload }) {
+		closeAddNoteInput(state) {
 			state.showAddNoteInput = false
 		},
 	},
