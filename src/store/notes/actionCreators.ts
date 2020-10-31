@@ -7,6 +7,7 @@ import {
 	DELETE_CURRENT_NOTE,
 	SET_ADD_NOTE_INPUT_VALUE,
 	TOGGLE_SHOW_ADD_NOTE_INPUT,
+	CLOSE_ADD_NOTE_INPUT,
 } from 'store/notes/actionsAndTypes'
 
 export const updateCurrentNoteID = (id: number): NotesActionTypes => ({
@@ -36,4 +37,7 @@ export const setAddNoteInputValue = (newString: string): NotesActionTypes => ({
 
 export const toggleShowAddNoteInput = (): NotesActionTypes => ({
 	type: TOGGLE_SHOW_ADD_NOTE_INPUT,
+})
+export const closeAddNoteInput = (): NotesActionTypes => ({
+	type: CLOSE_ADD_NOTE_INPUT,
 })

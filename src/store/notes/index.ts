@@ -19,6 +19,7 @@ import {
 	DELETE_CURRENT_NOTE,
 	SET_ADD_NOTE_INPUT_VALUE,
 	TOGGLE_SHOW_ADD_NOTE_INPUT,
+	CLOSE_ADD_NOTE_INPUT,
 } from 'store/notes/actionsAndTypes'
 
 // reducer
@@ -109,6 +110,12 @@ const notesReducer = (
 			return {
 				...state,
 				showAddNoteInput: !state.showAddNoteInput,
+			}
+
+		case CLOSE_ADD_NOTE_INPUT:
+			return {
+				...state,
+				showAddNoteInput: false,
 			}
 
 		default:

@@ -28,6 +28,7 @@ const TextArea = styled.textarea<TextAreaProps>`
 		scroll-behavior: smooth !important;
 	}
 
+
 	${({ theme, fontFamily, roundBottomLeftCorner }) => css`
 		${
 			roundBottomLeftCorner

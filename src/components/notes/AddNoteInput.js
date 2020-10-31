@@ -2,7 +2,11 @@ import React, { memo, forwardRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { Input, Button } from 'elements/shared'
-import { createNewNote, setAddNoteInputValue } from 'store/notes/actionCreators'
+import {
+	createNewNote,
+	setAddNoteInputValue,
+	closeAddNoteInput,
+} from 'store/notes/actionCreators'
 
 import styled, { css } from 'styled-components'
 import { layout } from 'theme'
@@ -19,6 +23,9 @@ const AddNoteInput = ({ textAreaRef }, ref) => {
 	const dispatchCreateNewNote = () => {
 		dispatch(createNewNote())
 		textAreaRef.current.focus()
+	}
+	const dispatchCloseAddNoteInput = () => {
+		dispatch(closeAddNoteInput())
 	}
 
 	const dispatchSetAddNoteInputValue = event => {
@@ -53,6 +60,7 @@ const AddNoteInput = ({ textAreaRef }, ref) => {
 				value={addNoteInputValue}
 				onChange={dispatchSetAddNoteInputValue}
 				onKeyDown={enterKeyCreateNewNote}
+				onBlur={dispatchCloseAddNoteInput}
 				placeholder="Enter new note name..."
 				borderRadius="bottom"
 				autoComplete="off"

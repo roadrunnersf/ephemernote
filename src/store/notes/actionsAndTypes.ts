@@ -9,6 +9,7 @@ export const DELETE_CURRENT_NOTE = 'Delete current note'
 export const SET_ADD_NOTE_INPUT_VALUE = 'Set add note input value'
 
 export const TOGGLE_SHOW_ADD_NOTE_INPUT = 'Toggle show add note input'
+export const CLOSE_ADD_NOTE_INPUT = 'Close add note input'
 
 type UpdateCurrentNoteIDAction = {
 	type: typeof UPDATE_CURRENT_NOTE_ID
@@ -35,6 +36,9 @@ type SetAddNoteInputValueAction = {
 type ToggleShowAddNoteInputAction = {
 	type: typeof TOGGLE_SHOW_ADD_NOTE_INPUT
 }
+type CloseAddNoteInputAction = {
+	type: typeof CLOSE_ADD_NOTE_INPUT
+}
 
 export type NotesActionTypes =
 	| UpdateCurrentNoteIDAction
@@ -44,6 +48,7 @@ export type NotesActionTypes =
 	| DeleteCurrentNoteAction
 	| SetAddNoteInputValueAction
 	| ToggleShowAddNoteInputAction
+	| CloseAddNoteInputAction
 
 export type Note = {
 	id: number
