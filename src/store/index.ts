@@ -1,12 +1,12 @@
-import { createStore, combineReducers, compose } from 'redux'
+import { configureStore } from '@reduxjs/toolkit'
 import throttle from 'lodash/throttle'
 
-import appReducer from 'store/app'
+import appSlice from 'store/app'
 import notesReducer from 'store/notes'
 import { loadState, saveState } from 'store/localStorage'
 
 import { NotesState } from 'store/notes/actionsAndTypes'
-import { AppState } from 'store/app/types'
+import { AppState } from './app/index.d'
 
 declare global {
 	type State = {
@@ -15,21 +15,13 @@ declare global {
 	}
 }
 
-declare global {
-	interface Window {
-		__REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose
-	}
-}
-const rootReducer = combineReducers({
-	app: appReducer,
-	notes: notesReducer,
+const store = configureStore({
+	reducer: {
+		app: appSlice.reducer,
+		notes: notesReducer,
+	},
+	preloadedState: loadState(),
 })
-
-const persistedState = loadState()
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
-const store = createStore(rootReducer, persistedState, composeEnhancers())
 
 store.subscribe(
 	throttle(() => {
