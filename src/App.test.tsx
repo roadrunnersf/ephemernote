@@ -7,7 +7,6 @@ import store from 'store'
 
 describe('App', () => {
 	it('Renders with no errors', () => {
-		// eslint-disable-next-line no-unused-vars
 		mount(
 			<Provider store={store}>
 				<App />
