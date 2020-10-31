@@ -15,13 +15,16 @@ declare global {
 	}
 }
 
-const store = configureStore({
-	reducer: {
-		app: appSlice.reducer,
-		notes: notesReducer,
-	},
-	preloadedState: loadState(),
-})
+export const createConfiguredStore = () =>
+	configureStore({
+		reducer: {
+			app: appSlice.reducer,
+			notes: notesReducer,
+		},
+		preloadedState: loadState(),
+	})
+
+const store = createConfiguredStore()
 
 store.subscribe(
 	throttle(() => {

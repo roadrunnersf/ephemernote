@@ -7,6 +7,11 @@ import FormatFont from 'mdi-react/FormatFontIcon'
 
 import { Icon, FlexBox } from 'elements/shared'
 
+export const ADD_NOTE = 'Add note'
+export const DELETE_CURRENT_NOTE = 'Delete current note'
+export const CHANGE_CURRENT_NOTE_FONT = 'Change current note font'
+export const CHANGE_THEME = 'Change theme'
+
 const ActionButtons = ({
 	dispatchCycleThemeColor,
 	dispatchToggleShowAddNoteInput,
@@ -15,22 +20,22 @@ const ActionButtons = ({
 }) => {
 	const actionButtons = [
 		{
-			title: 'Add note',
+			title: ADD_NOTE,
 			component: Plus,
 			onClick: dispatchToggleShowAddNoteInput,
 		},
 		{
-			title: 'Delete current note',
+			title: DELETE_CURRENT_NOTE,
 			component: TrashCanOutline,
 			onClick: dispatchDeleteCurrentNote,
 		},
 		{
-			title: 'Change current note font',
+			title: CHANGE_CURRENT_NOTE_FONT,
 			component: FormatFont,
 			onClick: dispatchCycleCurrentNoteFontFamily,
 		},
 		{
-			title: 'Change theme',
+			title: CHANGE_THEME,
 			component: Palette,
 			onClick: dispatchCycleThemeColor,
 		},

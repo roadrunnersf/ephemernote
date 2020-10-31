@@ -1,95 +1,132 @@
-import React from 'react'
-import { mount } from 'enzyme'
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 
+import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { Provider } from 'react-redux'
 
-import store from 'store'
 import NotesPage from './NotesPage'
-import { themeColorSchemes } from 'theme'
+
+import { createConfiguredStore } from 'store'
 import notesInitialState from 'store/notes/initialState'
 
-import { NoteTitleTab } from 'elements/shared'
+import { themeColorSchemes } from 'theme'
+import { findNoteWithID } from 'utils'
+import {
+	ADD_NOTE,
+	DELETE_CURRENT_NOTE,
+	CHANGE_CURRENT_NOTE_FONT,
+	CHANGE_THEME,
+} from 'components/notes/ActionButtons'
+import { updateCurrentNoteText } from 'store/notes'
 
-const notesInitialStateData = notesInitialState.data
 const theme = themeColorSchemes.mint
 
-const findTextArea = wrapper =>
-	wrapper.find('[data-testid="NotesPage>TextArea"]').hostNodes()
-const findTitleTabs = wrapper =>
-	wrapper.find('[data-testid="NotesPage>TitleTabs"]')
-const findActionButtons = wrapper =>
-	wrapper.find('[data-testid="NotesPage>ActionButtons"]')
+const { getByText, getByTitle, getByLabelText, queryByText } = screen
 
-const findNoteTitleTabs = wrapper => wrapper.find(NoteTitleTab)
+const renderNotesPage = () => {
+	const store = createConfiguredStore()
+
+	render(
+		<Provider store={store}>
+			<ThemeProvider theme={theme}>
+				<NotesPage />
+			</ThemeProvider>
+		</Provider>
+	)
+	return { store }
+}
 
 describe('NotesPage', () => {
-	let wrapper
+	it('displays all of the tab titles', () => {
+		renderNotesPage()
 
-	beforeEach(() => {
-		wrapper = mount(
-			<Provider store={store}>
-				<ThemeProvider theme={theme}>
-					<NotesPage />
-				</ThemeProvider>
-			</Provider>
-		)
+		notesInitialState.data.forEach(note => {
+			expect(getByText(note.title)).toBeInTheDocument()
+		})
 	})
 
-	describe('Components and props', () => {
-		it('renders a TextArea, TitleTabs and ActionButtons components', () => {
-			expect(findTextArea(wrapper).length).toBe(1)
-			expect(findTitleTabs(wrapper).length).toBe(1)
-			expect(findActionButtons(wrapper).length).toBe(1)
-		})
+	it('displays the correct text', () => {
+		renderNotesPage()
 
-		it('renders the correct number of TitleTabs based on the initial state', () => {
-			expect(findNoteTitleTabs(wrapper).length).toBe(
-				notesInitialStateData.length
-			)
-		})
+		const { currentNoteID } = notesInitialState
 
-		it('renders one tab as active', () => {
-			const numberOfActiveTabs = findNoteTitleTabs(wrapper).filterWhere(
-				node => node.props().active === true
-			).length
+		const currentNote = findNoteWithID(
+			notesInitialState.data,
+			currentNoteID
+		)
 
-			expect(numberOfActiveTabs).toBe(1)
-		})
-
-		it('renders the rest of the tabs as inactive', () => {
-			const numberOfInactiveTabs = findNoteTitleTabs(wrapper).filterWhere(
-				node => node.props().active === false
-			).length
-
-			const totalNumberOfTabs = findNoteTitleTabs(wrapper).length
-
-			expect(numberOfInactiveTabs).toBe(totalNumberOfTabs - 1)
+		expect(
+			getByText(currentNote.text.substring(0, 10), {
+				exact: false,
+			})
+		).toBeInTheDocument()
+	})
+	it('displays the correct action buttons', () => {
+		renderNotesPage()
+		;[
+			ADD_NOTE,
+			DELETE_CURRENT_NOTE,
+			CHANGE_CURRENT_NOTE_FONT,
+			CHANGE_THEME,
+		].forEach(buttonText => {
+			expect(getByTitle(buttonText)).toBeInTheDocument()
 		})
 	})
 
 	describe('Integration', () => {
-		it('Editing the TextArea changes the content', () => {
-			const testString = 'testing testing testing'
+		it('Typing in the TextArea changes the content', () => {
+			const { store } = renderNotesPage()
 
-			findTextArea(wrapper).simulate('change', {
-				target: {
-					value: testString,
-				},
-			})
+			const existingText = 'existing text'
+			const typedText = 'testing testing testing'
 
-			expect(findTextArea(wrapper).props().value).toBe(testString)
+			store.dispatch(updateCurrentNoteText(existingText))
+
+			userEvent.type(getByLabelText('current note'), typedText)
+
+			expect(getByLabelText('current note')).toHaveValue(
+				`${existingText}${typedText}`
+			)
 		})
+		it('clicking a tab shows the note for that tab', () => {
+			renderNotesPage()
 
-		it('Clicking the inactive tabs sets them to active', () => {
-			findNoteTitleTabs(wrapper).forEach((node, i) => {
-				if (node.props().active === false) {
-					node.simulate('click')
-					expect(
-						findNoteTitleTabs(wrapper).at(i).props().active
-					).toBe(true)
-				}
+			const inactiveNoteData = notesInitialState.data[1]
+
+			const titleOfTabToClick = inactiveNoteData.title
+
+			expect(
+				queryByText(inactiveNoteData.text.substring(0, 10), {
+					exact: false,
+				})
+			).not.toBeInTheDocument()
+
+			userEvent.click(getByText(titleOfTabToClick))
+
+			expect(
+				getByText(inactiveNoteData.text.substring(0, 10), {
+					exact: false,
+				})
+			).toBeInTheDocument()
+		})
+		it('It is possible to delete a tab', () => {
+			renderNotesPage()
+
+			notesInitialState.data.forEach(note => {
+				expect(getByText(note.title)).toBeInTheDocument()
 			})
+
+			const { currentNoteID } = notesInitialState
+
+			const currentNote = findNoteWithID(
+				notesInitialState.data,
+				currentNoteID
+			)
+
+			userEvent.click(getByTitle(DELETE_CURRENT_NOTE))
+
+			expect(queryByText(currentNote.title)).not.toBeInTheDocument()
 		})
 	})
 })

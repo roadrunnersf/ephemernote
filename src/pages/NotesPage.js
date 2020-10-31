@@ -89,6 +89,7 @@ const NotesPage = () => {
 						fontFamily={currentNote.fontFamily}
 						roundBottomLeftCorner={roundBottomLeftCorner}
 						ref={textAreaRef}
+						aria-label="current note"
 						data-testid="NotesPage>TextArea"
 					/>
 				</ContentBox>
