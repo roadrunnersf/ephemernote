@@ -5,14 +5,7 @@ import { TitleTabs, AddNoteInput, ActionButtons } from 'components/notes'
 import TextArea from 'elements/TextArea'
 import { PageContainer, ContentContainer, ContentBox } from 'elements/shared'
 
-import {
-	updateCurrentNoteText,
-	updateCurrentNoteID,
-	toggleShowAddNoteInput,
-	deleteCurrentNote,
-	cycleCurrentNoteFontFamily,
-} from 'store/notes'
-import { cycleThemeColor } from 'store/app'
+import { updateCurrentNoteText, updateCurrentNoteID } from 'store/notes'
 
 import { findNoteWithID } from 'utils'
 
@@ -55,20 +48,6 @@ const NotesPage = () => {
 		[dispatch]
 	)
 
-	const dispatchToggleShowAddNoteInput = useCallback(() => {
-		dispatch(toggleShowAddNoteInput())
-		addNoteInputRef.current.focus()
-	}, [dispatch, addNoteInputRef])
-	const dispatchDeleteCurrentNote = useCallback(() => {
-		dispatch(deleteCurrentNote())
-	}, [dispatch])
-	const dispatchCycleThemeColor = useCallback(() => {
-		dispatch(cycleThemeColor())
-	}, [dispatch])
-	const dispatchCycleCurrentNoteFontFamily = useCallback(() => {
-		dispatch(cycleCurrentNoteFontFamily())
-	}, [dispatch])
-
 	return (
 		<PageContainer>
 			<ContentContainer>
@@ -99,14 +78,7 @@ const NotesPage = () => {
 						ref={addNoteInputRef}
 					/>
 					<ActionButtons
-						dispatchDeleteCurrentNote={dispatchDeleteCurrentNote}
-						dispatchToggleShowAddNoteInput={
-							dispatchToggleShowAddNoteInput
-						}
-						dispatchCycleThemeColor={dispatchCycleThemeColor}
-						dispatchCycleCurrentNoteFontFamily={
-							dispatchCycleCurrentNoteFontFamily
-						}
+						addNoteInputRef={addNoteInputRef}
 						data-testid="NotesPage>ActionButtons"
 					/>
 				</ContentBox>
