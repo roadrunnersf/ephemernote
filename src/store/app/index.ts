@@ -16,8 +16,6 @@ const appSlice = createSlice({
 	},
 })
 
-const { cycleThemeColor } = appSlice.actions
-
-export { cycleThemeColor }
+export const { cycleThemeColor } = appSlice.actions
 
 export default appSlice

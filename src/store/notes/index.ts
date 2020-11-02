@@ -101,7 +101,7 @@ function newNoteShape({
 	}
 }
 
-const {
+export const {
 	reducer: notesReducer,
 	actions: {
 		closeAddNoteInput,
@@ -114,16 +114,5 @@ const {
 		updateCurrentNoteText,
 	},
 } = notesSlice
-
-export {
-	closeAddNoteInput,
-	createNewNote,
-	cycleCurrentNoteFontFamily,
-	deleteCurrentNote,
-	setAddNoteInputValue,
-	toggleShowAddNoteInput,
-	updateCurrentNoteID,
-	updateCurrentNoteText,
-}
 
 export default notesReducer
