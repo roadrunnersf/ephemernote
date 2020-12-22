@@ -5,9 +5,10 @@
 Built using:
 
 -create-react-app
+-typescript
 -redux
 -react-redux
--immer
+-redux/toolkit
 -styled-components
 -husky hooks
 -storybook
