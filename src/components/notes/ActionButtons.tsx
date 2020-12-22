@@ -46,13 +46,13 @@ const ActionButtons: React.FC = ({ addNoteInputRef }: TSFixMe) => {
 			<StyledFont
 				title={CHANGE_CURRENT_NOTE_FONT}
 				onClick={() => {
-					dispatch(cycleThemeColor())
+					dispatch(cycleCurrentNoteFontFamily())
 				}}
 			/>
 			<StyledColor
 				title={CHANGE_THEME}
 				onClick={() => {
-					dispatch(cycleCurrentNoteFontFamily())
+					dispatch(cycleThemeColor())
 				}}
 			/>
 		</FlexBox>
