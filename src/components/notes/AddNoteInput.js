@@ -20,8 +20,9 @@ const AddNoteInput = ({ textAreaRef }, ref) => {
 		state => state.notes.addNoteInputValue
 	)
 
-	const dispatchCreateNewNote = () => {
+	const dispatchCreateNewNote = event => {
 		dispatch(createNewNote())
+
 		textAreaRef.current.focus()
 	}
 	const dispatchCloseAddNoteInput = () => {
@@ -37,8 +38,6 @@ const AddNoteInput = ({ textAreaRef }, ref) => {
 			// if copy and pasting then truncate the pasted string
 			const newValue = value.slice(0, MAX_TITLE_LENGTH)
 			dispatch(setAddNoteInputValue(newValue))
-		} else {
-			return
 		}
 	}
 
@@ -68,7 +67,7 @@ const AddNoteInput = ({ textAreaRef }, ref) => {
 			/>
 			<Button
 				show={hasContent && showAddNoteInput}
-				onClick={dispatchCreateNewNote}
+				onMouseDown={dispatchCreateNewNote}
 				borderRadius="bottom"
 				variant={'tertiary'}
 				style={{ marginRight: 8 }}
