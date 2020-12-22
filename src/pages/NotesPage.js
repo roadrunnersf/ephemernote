@@ -75,7 +75,7 @@ const NotesPage = () => {
 				<ContentBox justifyContent="center" flexWrap>
 					<AddNoteInput
 						textAreaRef={textAreaRef}
-						ref={addNoteInputRef}
+						addNoteInputRef={addNoteInputRef}
 					/>
 					<ActionButtons
 						addNoteInputRef={addNoteInputRef}

@@ -1,4 +1,4 @@
-import React, { memo, forwardRef } from 'react'
+import React, { memo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { Input, Button } from 'elements/shared'
@@ -12,25 +12,32 @@ import styled, { css } from 'styled-components'
 import { layout } from 'theme'
 import { MAX_TITLE_LENGTH } from 'globalConstants'
 
-const AddNoteInput = ({ textAreaRef }, ref) => {
+type Props = {
+	textAreaRef: React.RefObject<HTMLTextAreaElement>
+	addNoteInputRef: React.RefObject<HTMLInputElement>
+}
+
+const AddNoteInput: React.FC<Props> = ({ textAreaRef, addNoteInputRef }) => {
 	const dispatch = useDispatch()
 
-	const showAddNoteInput = useSelector(state => state.notes.showAddNoteInput)
+	const showAddNoteInput = useSelector(
+		(state: State) => state.notes.showAddNoteInput
+	)
 	const addNoteInputValue = useSelector(
-		state => state.notes.addNoteInputValue
+		(state: State) => state.notes.addNoteInputValue
 	)
 
-	const dispatchCreateNewNote = event => {
+	const dispatchCreateNewNote = () => {
 		dispatch(createNewNote())
 
-		textAreaRef.current.focus()
+		textAreaRef?.current?.focus()
 	}
 	const dispatchCloseAddNoteInput = () => {
 		dispatch(closeAddNoteInput())
 	}
 
-	const dispatchSetAddNoteInputValue = event => {
-		const { value } = event.target
+	const dispatchSetAddNoteInputValue = (event: React.SyntheticEvent) => {
+		const { value } = event.target as HTMLTextAreaElement
 
 		if (value.length <= MAX_TITLE_LENGTH) {
 			dispatch(setAddNoteInputValue(value))
@@ -43,7 +50,7 @@ const AddNoteInput = ({ textAreaRef }, ref) => {
 
 	const hasContent = !!addNoteInputValue
 
-	const enterKeyCreateNewNote = event => {
+	const enterKeyCreateNewNote = (event: React.KeyboardEvent) => {
 		if (event.key === 'Enter') {
 			event.preventDefault()
 			dispatchCreateNewNote()
@@ -63,13 +70,13 @@ const AddNoteInput = ({ textAreaRef }, ref) => {
 				placeholder="Enter new note name..."
 				borderRadius="bottom"
 				autoComplete="off"
-				ref={ref}
+				ref={addNoteInputRef}
 			/>
 			<Button
 				show={hasContent && showAddNoteInput}
 				onMouseDown={dispatchCreateNewNote}
 				borderRadius="bottom"
-				variant={'tertiary'}
+				variant="tertiary"
 				style={{ marginRight: 8 }}
 			>
 				Add
@@ -78,7 +85,11 @@ const AddNoteInput = ({ textAreaRef }, ref) => {
 	)
 }
 
-const CustomBox = styled.div`
+type CustomBoxProps = {
+	show: boolean
+}
+
+const CustomBox = styled.div<CustomBoxProps>`
 	display: flex;
 	min-width: 200px;
 	max-width: 300px;
@@ -86,8 +97,8 @@ const CustomBox = styled.div`
 	margin-bottom: ${layout.unit}px;
 	margin-right: auto;
 
-	${({ show }) => css`
-		${!show &&
+	${p => css`
+		${!p.show &&
 		css`
 			min-width: 0px;
 			max-width: 0px;
@@ -95,4 +106,4 @@ const CustomBox = styled.div`
 	`}
 `
 
-export default memo(forwardRef(AddNoteInput))
+export default memo(AddNoteInput)
